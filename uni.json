@@ -1,0 +1,5057 @@
+
+🔥 Out Now 🔥 Our Q1 2021 Crypto Report is fresh off the press! Read it first and understand the state of cryptocurrency in the first quarter of 2021 - from the rise of NFT to $2 trillion crypto market cap and much more! 🔎
+EN 
+USD 
+Help
+coingecko candy jar
+
+Subscribe
+CoinGecko Logo
+Home
+Markets
+DeFi
+NFT
+Portfolio
+Exchanges
+News
+Tools
+Resources
+Learn
+Community
+Search
+Coins: 6957
+Exchanges: 459
+Market Cap: $2,174,023,260,197 2.3%
+24h Vol: $216,768,980,335
+Dominance:
+BTC 46.5%
+ETH 14.7%
+ETH Gas : 34 gwei
+The world's most comprehensive cryptocurrency API
+
+Free
+Because we believe data should be democratized
+
+
+100% Free crypto API
+No keys required
+Publicly available
+Reliable
+Solid team of cryptocurrency specialists working hard to bring top notch cryptocurrency data
+
+In operation since early 2014
+Generous rate limits with up to 100 requests/minute
+Extensive market data
+Comprehensive
+All the info you'll ever need at your fingertips
+
+
+Track over 7,000 coins such as bitcoin, litecoin, ethereum, and more from more than 400 exchanges and growing
+Comprehensive historical data
+21 endpoints and more coming soon
+Trusted by industry leaders
+
+The CoinGecko data market APIs are a set of robust APIs that developers can use to not only enhance their existing apps and services but also to build advanced crypto market apps. The team is also responsive to feedback and the occasions that we did these were quickly implemented into their api services.
+
+
+Matthew Tan
+CEO, Etherscan
+
+Being in crypto space, our users expect us to provide the best service in the space. This includes having streaming crypto prices, price charts based on different time variations and providing these thousands of data points in a fast and secure manner. This is why MEW use coingecko as they are the best in the cryptospace for all crypto pricing API needs.
+
+
+Kosala
+CEO, MyEtherwallet
+
+CoinGecko is one of our favorite teams in this space and using their API has been a huge improvement for our new beta.mycrypto.com. There are few reliable sources of this information and CoinGecko's data is extensive and easy to implement.
+
+
+Taylor Monahan
+CEO, MyCrypto
+Awesome services that are using CoinGecko crypto API
+Wallets
+Trezor Metamask Mew Trust Wallet
+Electrum mycrypto The Crypto App BitGo Token Pocket
+DeFi
+Curve.fi Chainlink Kyber Network Zapper.fi Balancer Frontier Zerion Aave
+Block Explorers
+Etherscan EOSPark Cryptoid Blockchair Cosmostation CoinExplorer
+Data Aggregators
+Dapp Radar CryptoMarketCap Masternodes.online Crypto Mass Adoption The Crypto App
+Media & Platforms
+Tomochain Hummingbot Status forklog
+Explore the API 
+CoinGecko API V3 https://coingecko.com/api/documentations/v3
+
+Access CoinGecko data such as live pricing, trading volume, tickers, exchanges, historical data, coin info & images, developer & community stats, events, global markets, and CoinGecko Beam coins & exchanges status updates directly.
+
+Use our API to power your applications at no cost!
+
+We would appreciate any link or mention of ‘Powered by CoinGecko API’ on your awesome application!
+
+Note:
+
+All our data is provided for free, and as-is without any warranty.
+
+Timestamp returned by this API are in UTC Timezone.
+
+You may refer to our branding guide as a reference.
+
+CoinGecko API Terms of Service
+
+Download our API Deck
+
+For additional information about our API visit https://www.coingecko.com/api
+
+Rate Limit: 100 requests/minute
+
+Clients (Unofficial)
+C++ https://github.com/D7EAD/CoinGecko
+Go https://github.com/superoo7/go-gecko
+NodeJS https://github.com/miscavage/CoinGecko-API
+Wordpress Plugin https://coingecko-widgets.coolplugins.net
+.Net https://github.com/tosunthex/CoinGecko
+PHP https://github.com/codenix-sv/coingecko-api
+Python https://github.com/man-c/pycoingecko
+Java https://github.com/Philipinho/CoinGecko-Java
+Kotlin https://github.com/DrewCarlson/CoinGecko-Kotlin
+Google Sheets https://blog.coingecko.com/import-coingecko-cryptocurrency-data-into-google-sheets
+Cryptosheets (Excel & Google Sheets) - 25% off with candies! https://cryptosheets.com/partners/coingecko
+Schemes
+
+HTTPS
+ping
+
+GET
+/ping
+Check API server status
+simple
+
+GET
+/simple/price
+Get the current price of any cryptocurrencies in any other supported currencies that you need.
+GET
+/simple/token_price/{id}
+Get current price of tokens (using contract addresses) for a given platform in any other currency that you need.
+GET
+/simple/supported_vs_currencies
+Get list of supported_vs_currencies.
+coins
+
+GET
+/coins/list
+List all supported coins id, name and symbol (no pagination required)
+GET
+/coins/markets
+List all supported coins price, market cap, volume, and market related data
+GET
+/coins/{id}
+Get current data (name, price, market, ... including exchange tickers) for a coin
+Get current data (name, price, market, … including exchange tickers) for a coin.
+
+IMPORTANT:
+Ticker object is limited to 100 items, to get more tickers, use /coins/{id}/tickers
+Ticker is_stale is true when ticker that has not been updated/unchanged from the exchange for a while.
+Ticker is_anomaly is true if ticker’s price is outliered by our system.
+You are responsible for managing how you want to display these information (e.g. footnote, different background, change opacity, hide)
+
+Parameters
+Name	Description
+id *
+string
+(path)	
+pass the coin id (can be obtained from /coins) eg. bitcoin
+
+uniswap
+localization
+string
+(query)	
+Include all localized languages in response (true/false) [default: true]
+
+false
+tickers
+boolean
+(query)	
+Include tickers data (true/false) [default: true]
+
+
+true
+market_data
+boolean
+(query)	
+Include market_data (true/false) [default: true]
+
+
+true
+community_data
+boolean
+(query)	
+Include community_data data (true/false) [default: true]
+
+
+false
+developer_data
+boolean
+(query)	
+Include developer_data data (true/false) [default: true]
+
+
+false
+sparkline
+boolean
+(query)	
+Include sparkline 7 days data (eg. true, false) [default: false]
+
+
+false
+Responses
+Response content type
+
+application/json
+Curl
+curl -X GET "https://api.coingecko.com/api/v3/coins/uniswap?localization=false&tickers=true&market_data=true&community_data=false&developer_data=false&sparkline=false" -H "accept: application/json"
+Request URL
+https://api.coingecko.com/api/v3/coins/uniswap?localization=false&tickers=true&market_data=true&community_data=false&developer_data=false&sparkline=false
+Server response
+Code	Details
+200	
+Response body
+Download
+{
+  "id": "uniswap",
+  "symbol": "uni",
+  "name": "Uniswap",
+  "asset_platform_id": "ethereum",
+  "platforms": {
+    "ethereum": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+    "huobi-token": "0x22c54ce8321a4015740ee1109d9cbc25815c46e6",
+    "polygon-pos": "0xb33eaad8d922b1083446dc23f610c2567fb5180f",
+    "binance-smart-chain": "0xbf5140a22578168fd562dccf235e5d43a02ce9b1",
+    "xdai": "0x4537e328bf7e4efa29d05caea260d7fe26af9d74"
+  },
+  "block_time_in_minutes": 0,
+  "hashing_algorithm": null,
+  "categories": [
+    "Decentralized Exchange Token (DEX)",
+    "Automated Market Maker (AMM)",
+    "Yield Farming",
+    "Decentralized Finance (DeFi)",
+    "Governance",
+    "Exchange-based Tokens"
+  ],
+  "public_notice": null,
+  "additional_notices": [],
+  "description": {
+    "en": "UNI is the governance token for Uniswap, an Automated Market Market DEX on the Ethereum blockchain. The UNI token allows token holders to participate in the governance of the protocol. Key decisions such as usage of the treasury or future upgrades can be decided through a governance vote."
+  },
+  "links": {
+    "homepage": [
+      "https://uniswap.org/",
+      "",
+      ""
+    ],
+    "blockchain_site": [
+      "https://etherscan.io/token/0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+      "https://ethplorer.io/address/0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+      "https://blockscout.com/poa/xdai/tokens/0x4537e328Bf7e4eFA29D05CAeA260D7fE26af9D74/token-transfers",
+      "https://explorer-mainnet.maticvigil.com/tokens/0xb33EaAd8d922B1083446DC23f610c2567fB5180f/token-transfers",
+      "https://hecoinfo.com/token/0x22c54ce8321a4015740ee1109d9cbc25815c46e6"
+    ],
+    "official_forum_url": [
+      "",
+      "",
+      ""
+    ],
+    "chat_url": [
+      "https://discord.gg/FCfyBSbCU5",
+      "",
+      ""
+    ],
+    "announcement_url": [
+      "https://uniswap.org/blog/",
+      ""
+    ],
+    "twitter_screen_name": "Uniswap",
+    "facebook_username": "",
+    "bitcointalk_thread_identifier": null,
+    "telegram_channel_identifier": "",
+    "subreddit_url": "https://www.reddit.com/r/Uniswap",
+    "repos_url": {
+      "github": [],
+      "bitbucket": []
+    }
+  },
+  "image": {
+    "thumb": "https://assets.coingecko.com/coins/images/12504/thumb/uniswap-uni.png?1600306604",
+    "small": "https://assets.coingecko.com/coins/images/12504/small/uniswap-uni.png?1600306604",
+    "large": "https://assets.coingecko.com/coins/images/12504/large/uniswap-uni.png?1600306604"
+  },
+  "country_origin": "",
+  "genesis_date": null,
+  "contract_address": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+  "sentiment_votes_up_percentage": 80.51,
+  "sentiment_votes_down_percentage": 19.49,
+  "market_cap_rank": 9,
+  "coingecko_rank": 143,
+  "coingecko_score": 42.038,
+  "developer_score": 0,
+  "community_score": 46.687,
+  "liquidity_score": 72.855,
+  "public_interest_score": 1.149,
+  "market_data": {
+    "current_price": {
+      "aed": 150.35,
+      "ars": 3826.98,
+      "aud": 52.64,
+      "bch": 0.04519469,
+      "bdt": 3471.07,
+      "bhd": 15.43,
+      "bmd": 40.93,
+      "bnb": 0.06741845,
+      "brl": 218.53,
+      "btc": 0.00075658,
+      "cad": 50.26,
+      "chf": 37.21,
+      "clp": 29039,
+      "cny": 264.8,
+      "czk": 874.06,
+      "dkk": 251.19,
+      "dot": 1.132287,
+      "eos": 6.616225,
+      "eth": 0.01478265,
+      "eur": 33.78,
+      "gbp": 29.36,
+      "hkd": 317.82,
+      "huf": 12173.61,
+      "idr": 591965,
+      "ils": 132.81,
+      "inr": 3031.17,
+      "jpy": 4453.44,
+      "krw": 45497,
+      "kwd": 12.32,
+      "lkr": 8062.77,
+      "ltc": 0.15626979,
+      "mmk": 63756,
+      "mxn": 820.71,
+      "myr": 168.01,
+      "ngn": 16732.13,
+      "nok": 335.85,
+      "nzd": 56.5,
+      "php": 1971.84,
+      "pkr": 6283.39,
+      "pln": 154.24,
+      "rub": 3057.88,
+      "sar": 153.54,
+      "sek": 343.11,
+      "sgd": 54.32,
+      "thb": 1276.58,
+      "try": 336.63,
+      "twd": 1142.04,
+      "uah": 1136.11,
+      "usd": 40.93,
+      "vef": 4.1,
+      "vnd": 944141,
+      "xag": 1.58,
+      "xau": 0.02314376,
+      "xdr": 28.5,
+      "xlm": 80.561,
+      "xrp": 27.012322,
+      "yfi": 0.00084358,
+      "zar": 586.13,
+      "bits": 756.58,
+      "link": 1.107988,
+      "sats": 75658
+    },
+    "total_value_locked": {
+      "btc": 143382,
+      "usd": 7754941502
+    },
+    "mcap_to_tvl_ratio": 2.74,
+    "fdv_to_tvl_ratio": 5.28,
+    "roi": null,
+    "ath": {
+      "aed": 160.74,
+      "ars": 4088.46,
+      "aud": 56.06,
+      "bch": 0.06859671,
+      "bdt": 3710.06,
+      "bhd": 16.5,
+      "bmd": 43.76,
+      "bnb": 0.45546952,
+      "brl": 233.8,
+      "btc": 0.00079902,
+      "cad": 53.84,
+      "chf": 39.77,
+      "clp": 30469,
+      "cny": 283.51,
+      "czk": 933.66,
+      "dkk": 268.11,
+      "dot": 1.63919,
+      "eos": 9.075868,
+      "eth": 0.02223491,
+      "eur": 36.05,
+      "gbp": 31.35,
+      "hkd": 339.68,
+      "huf": 13049.34,
+      "idr": 633262,
+      "ils": 142.27,
+      "inr": 3251.82,
+      "jpy": 4746.64,
+      "krw": 48456,
+      "kwd": 13.17,
+      "lkr": 8531.82,
+      "ltc": 0.19058923,
+      "mmk": 68145,
+      "mxn": 870.49,
+      "myr": 179.52,
+      "ngn": 17739.58,
+      "nok": 357.8,
+      "nzd": 60.15,
+      "php": 2120.36,
+      "pkr": 6724.79,
+      "pln": 165.03,
+      "rub": 3255.29,
+      "sar": 164.12,
+      "sek": 364.62,
+      "sgd": 57.95,
+      "thb": 1370.73,
+      "try": 358.78,
+      "twd": 1219.52,
+      "uah": 1215.88,
+      "usd": 43.76,
+      "vef": 2087840,
+      "vnd": 1002815,
+      "xag": 1.66,
+      "xau": 0.02451505,
+      "xdr": 30.48,
+      "xlm": 107.895,
+      "xrp": 74.667,
+      "yfi": 0.0010556,
+      "zar": 622.63,
+      "bits": 799.02,
+      "link": 1.307086,
+      "sats": 79902
+    },
+    "ath_change_percentage": {
+      "aed": -7.18552,
+      "ars": -7.11338,
+      "aud": -6.79561,
+      "bch": -34.09508,
+      "bdt": -7.16683,
+      "bhd": -7.17711,
+      "bmd": -7.18032,
+      "bnb": -85.29705,
+      "brl": -7.25851,
+      "btc": -5.91713,
+      "cad": -7.37119,
+      "chf": -7.14518,
+      "clp": -5.43394,
+      "cny": -7.31212,
+      "czk": -7.08157,
+      "dkk": -7.0252,
+      "dot": -31.3224,
+      "eos": -27.7128,
+      "eth": -33.98316,
+      "eur": -7.0218,
+      "gbp": -7.03739,
+      "hkd": -7.15987,
+      "huf": -7.44471,
+      "idr": -7.27894,
+      "ils": -7.36338,
+      "inr": -7.4926,
+      "jpy": -6.87448,
+      "krw": -6.82001,
+      "kwd": -7.15348,
+      "lkr": -6.2302,
+      "ltc": -18.56687,
+      "mmk": -7.16678,
+      "mxn": -6.42359,
+      "myr": -7.13507,
+      "ngn": -6.41019,
+      "nok": -6.85804,
+      "nzd": -6.75958,
+      "php": -7.70901,
+      "pkr": -7.28796,
+      "pln": -7.24148,
+      "rub": -6.76757,
+      "sar": -7.1891,
+      "sek": -6.62087,
+      "sgd": -7.00986,
+      "thb": -7.54495,
+      "try": -6.91201,
+      "twd": -7.08873,
+      "uah": -7.28536,
+      "usd": -7.18032,
+      "vef": -99.99981,
+      "vnd": -6.57028,
+      "xag": -5.49305,
+      "xau": -6.26244,
+      "xdr": -7.22375,
+      "xlm": -25.80623,
+      "xrp": -64.15748,
+      "yfi": -20.59056,
+      "zar": -6.61258,
+      "bits": -5.91713,
+      "link": -15.958,
+      "sats": -5.91713
+    },
+    "ath_date": {
+      "aed": "2021-04-29T00:29:47.826Z",
+      "ars": "2021-04-29T00:29:47.826Z",
+      "aud": "2021-04-29T00:29:47.826Z",
+      "bch": "2021-03-23T17:21:09.214Z",
+      "bdt": "2021-04-29T00:29:47.826Z",
+      "bhd": "2021-04-29T00:29:47.826Z",
+      "bmd": "2021-04-29T00:29:47.826Z",
+      "bnb": "2021-01-31T03:39:26.958Z",
+      "brl": "2021-04-29T00:29:47.826Z",
+      "btc": "2021-04-29T02:08:32.925Z",
+      "cad": "2021-04-29T00:29:47.826Z",
+      "chf": "2021-04-29T00:29:47.826Z",
+      "clp": "2021-04-29T00:29:47.826Z",
+      "cny": "2021-04-29T00:29:47.826Z",
+      "czk": "2021-04-29T00:29:47.826Z",
+      "dkk": "2021-04-29T00:29:47.826Z",
+      "dot": "2020-09-18T18:15:17.414Z",
+      "eos": "2021-03-07T23:44:20.880Z",
+      "eth": "2020-09-18T18:15:17.414Z",
+      "eur": "2021-04-29T00:29:47.826Z",
+      "gbp": "2021-04-29T00:29:47.826Z",
+      "hkd": "2021-04-29T00:29:47.826Z",
+      "huf": "2021-04-29T00:29:47.826Z",
+      "idr": "2021-04-29T00:29:47.826Z",
+      "ils": "2021-04-29T00:29:47.826Z",
+      "inr": "2021-04-29T00:29:47.826Z",
+      "jpy": "2021-04-29T00:29:47.826Z",
+      "krw": "2021-04-29T00:29:47.826Z",
+      "kwd": "2021-04-29T00:29:47.826Z",
+      "lkr": "2021-04-29T00:29:47.826Z",
+      "ltc": "2021-03-23T17:21:09.214Z",
+      "mmk": "2021-04-29T00:29:47.826Z",
+      "mxn": "2021-04-29T00:29:47.826Z",
+      "myr": "2021-04-29T00:29:47.826Z",
+      "ngn": "2021-04-29T02:08:32.925Z",
+      "nok": "2021-04-29T00:29:47.826Z",
+      "nzd": "2021-04-29T00:29:47.826Z",
+      "php": "2021-04-29T00:29:47.826Z",
+      "pkr": "2021-04-29T00:29:47.826Z",
+      "pln": "2021-04-29T00:29:47.826Z",
+      "rub": "2021-04-29T00:29:47.826Z",
+      "sar": "2021-04-29T00:29:47.826Z",
+      "sek": "2021-04-29T00:29:47.826Z",
+      "sgd": "2021-04-29T00:29:47.826Z",
+      "thb": "2021-04-29T00:29:47.826Z",
+      "try": "2021-04-29T00:29:47.826Z",
+      "twd": "2021-04-29T00:29:47.826Z",
+      "uah": "2021-04-29T00:29:47.826Z",
+      "usd": "2021-04-29T00:29:47.826Z",
+      "vef": "2020-09-18T18:15:17.414Z",
+      "vnd": "2021-04-29T00:29:47.826Z",
+      "xag": "2021-04-29T00:29:47.826Z",
+      "xau": "2021-04-29T00:29:47.826Z",
+      "xdr": "2021-04-29T00:29:47.826Z",
+      "xlm": "2020-09-18T18:15:17.414Z",
+      "xrp": "2021-03-13T10:20:18.354Z",
+      "yfi": "2021-03-23T17:21:09.214Z",
+      "zar": "2021-04-29T00:29:47.826Z",
+      "bits": "2021-04-29T02:08:32.925Z",
+      "link": "2021-03-23T17:21:09.214Z",
+      "sats": "2021-04-29T02:08:32.925Z"
+    },
+    "atl": {
+      "aed": 3.78,
+      "ars": 77.44,
+      "aud": 1.41,
+      "bch": 0.00433785,
+      "bdt": 87.3,
+      "bhd": 0.388445,
+      "bmd": 1.03,
+      "bnb": 0.03613715,
+      "brl": 5.4,
+      "btc": 0.00009352,
+      "cad": 1.36,
+      "chf": 0.939221,
+      "clp": 783.21,
+      "cny": 6.96,
+      "czk": 23.37,
+      "dkk": 6.5,
+      "dot": 0.19346999,
+      "eos": 0.37339241,
+      "eth": 0.00270212,
+      "eur": 0.874238,
+      "gbp": 0.796343,
+      "hkd": 7.98,
+      "huf": 314.11,
+      "idr": 15304.8,
+      "ils": 3.52,
+      "inr": 75.81,
+      "jpy": 108.19,
+      "krw": 1211.23,
+      "kwd": 0.314822,
+      "lkr": 190.57,
+      "ltc": 0.02091874,
+      "mmk": 1371.28,
+      "mxn": 21.65,
+      "myr": 4.26,
+      "ngn": 678.51,
+      "nok": 9.33,
+      "nzd": 1.53,
+      "php": 49.87,
+      "pkr": 171.25,
+      "pln": 3.89,
+      "rub": 77.17,
+      "sar": 3.86,
+      "sek": 9.09,
+      "sgd": 1.4,
+      "thb": 32.06,
+      "try": 7.72,
+      "twd": 30.04,
+      "uah": 29.16,
+      "usd": 1.03,
+      "vef": 0.448186,
+      "vnd": 24052,
+      "xag": 0.0378918,
+      "xau": 0.0005261,
+      "xdr": 0.727136,
+      "xlm": 12.664194,
+      "xrp": 4.014444,
+      "yfi": 0.00002834,
+      "zar": 16.82,
+      "bits": 121.06,
+      "link": 0.08974947,
+      "sats": 12106.15
+    },
+    "atl_change_percentage": {
+      "aed": 3842.63855,
+      "ars": 4804.13879,
+      "aud": 3593.20774,
+      "bch": 942.18943,
+      "bdt": 3845.30345,
+      "bhd": 3841.75131,
+      "bmd": 3842.85968,
+      "bnb": 85.31467,
+      "brl": 3918.58691,
+      "btc": 703.79473,
+      "cad": 3565.13346,
+      "chf": 3831.87969,
+      "clp": 3578.89905,
+      "cny": 3676.44331,
+      "czk": 3612.75366,
+      "dkk": 3732.26697,
+      "dot": 481.87632,
+      "eos": 1657.04989,
+      "eth": 443.23197,
+      "eur": 3734.32048,
+      "gbp": 3559.22492,
+      "hkd": 3850.07888,
+      "huf": 3745.06057,
+      "idr": 3736.49142,
+      "ils": 3640.92284,
+      "inr": 3868.15666,
+      "jpy": 3985.66536,
+      "krw": 3627.7733,
+      "kwd": 3783.86102,
+      "lkr": 4098.1853,
+      "ltc": 641.93164,
+      "mmk": 4513.32165,
+      "mxn": 3662.16589,
+      "myr": 3814.25022,
+      "ngn": 2346.90751,
+      "nok": 3470.38653,
+      "nzd": 3556.77285,
+      "php": 3824.1233,
+      "pkr": 3540.7477,
+      "pln": 3832.5507,
+      "rub": 3832.78592,
+      "sar": 3841.97569,
+      "sek": 3644.22106,
+      "sgd": 3746.55094,
+      "thb": 3853.15743,
+      "try": 4225.82699,
+      "twd": 3671.69232,
+      "uah": 3766.29524,
+      "usd": 3842.85968,
+      "vef": 807.42762,
+      "vnd": 3795.39738,
+      "xag": 4041.31656,
+      "xau": 4267.94212,
+      "xdr": 3789.36937,
+      "xlm": 532.10612,
+      "xrp": 566.65854,
+      "yfi": 2858.11365,
+      "zar": 3357.01441,
+      "bits": 520.95981,
+      "link": 1123.96446,
+      "sats": 520.95981
+    },
+    "atl_date": {
+      "aed": "2020-09-17T01:20:38.214Z",
+      "ars": "2020-09-17T01:20:38.214Z",
+      "aud": "2020-09-17T01:20:38.214Z",
+      "bch": "2020-09-17T01:20:38.214Z",
+      "bdt": "2020-09-17T01:20:38.214Z",
+      "bhd": "2020-09-17T01:20:38.214Z",
+      "bmd": "2020-09-17T01:20:38.214Z",
+      "bnb": "2020-09-17T01:20:38.214Z",
+      "brl": "2020-09-17T01:20:38.214Z",
+      "btc": "2020-09-17T01:20:38.214Z",
+      "cad": "2020-09-17T01:20:38.214Z",
+      "chf": "2020-09-17T01:20:38.214Z",
+      "clp": "2020-09-17T01:20:38.214Z",
+      "cny": "2020-09-17T01:20:38.214Z",
+      "czk": "2020-09-17T01:20:38.214Z",
+      "dkk": "2020-09-17T01:20:38.214Z",
+      "dot": "2020-09-17T01:20:38.214Z",
+      "eos": "2020-09-17T01:20:38.214Z",
+      "eth": "2020-09-17T01:20:38.214Z",
+      "eur": "2020-09-17T01:20:38.214Z",
+      "gbp": "2020-09-17T01:20:38.214Z",
+      "hkd": "2020-09-17T01:20:38.214Z",
+      "huf": "2020-09-17T01:20:38.214Z",
+      "idr": "2020-09-17T01:20:38.214Z",
+      "ils": "2020-09-17T01:20:38.214Z",
+      "inr": "2020-09-17T01:20:38.214Z",
+      "jpy": "2020-09-17T01:20:38.214Z",
+      "krw": "2020-09-17T01:20:38.214Z",
+      "kwd": "2020-09-17T01:20:38.214Z",
+      "lkr": "2020-09-17T01:20:38.214Z",
+      "ltc": "2020-09-17T01:20:38.214Z",
+      "mmk": "2020-09-17T01:20:38.214Z",
+      "mxn": "2020-09-17T01:20:38.214Z",
+      "myr": "2020-09-17T01:20:38.214Z",
+      "ngn": "2020-11-05T08:48:54.677Z",
+      "nok": "2020-09-17T01:20:38.214Z",
+      "nzd": "2020-09-17T01:20:38.214Z",
+      "php": "2020-09-17T01:20:38.214Z",
+      "pkr": "2020-09-17T01:20:38.214Z",
+      "pln": "2020-09-17T01:20:38.214Z",
+      "rub": "2020-09-17T01:20:38.214Z",
+      "sar": "2020-09-17T01:20:38.214Z",
+      "sek": "2020-09-17T01:20:38.214Z",
+      "sgd": "2020-09-17T01:20:38.214Z",
+      "thb": "2020-09-17T01:20:38.214Z",
+      "try": "2020-09-17T01:20:38.214Z",
+      "twd": "2020-09-17T01:20:38.214Z",
+      "uah": "2020-09-17T01:20:38.214Z",
+      "usd": "2020-09-17T01:20:38.214Z",
+      "vef": "2021-01-11T16:49:46.087Z",
+      "vnd": "2020-09-17T01:20:38.214Z",
+      "xag": "2020-09-17T01:20:38.214Z",
+      "xau": "2020-09-17T01:20:38.214Z",
+      "xdr": "2020-09-17T01:20:38.214Z",
+      "xlm": "2020-09-17T01:20:38.214Z",
+      "xrp": "2020-09-17T01:20:38.214Z",
+      "yfi": "2020-09-17T01:20:38.214Z",
+      "zar": "2020-09-17T01:20:38.214Z",
+      "bits": "2020-12-27T11:28:25.222Z",
+      "link": "2020-09-17T01:20:38.214Z",
+      "sats": "2020-12-27T11:28:25.222Z"
+    },
+    "market_cap": {
+      "aed": 78161028309,
+      "ars": 1989483378879,
+      "aud": 27367108397,
+      "bch": 23494795,
+      "bdt": 1804461388467,
+      "bhd": 8020913575,
+      "bmd": 21279922676,
+      "bnb": 35047977,
+      "brl": 113602867205,
+      "btc": 393315,
+      "cad": 26128446658,
+      "chf": 19344620108,
+      "clp": 15095991722986,
+      "cny": 137659819790,
+      "czk": 454388060905,
+      "dkk": 130583287904,
+      "dot": 588627514,
+      "eos": 3439493263,
+      "eth": 7684869,
+      "eur": 17561320028,
+      "gbp": 15263045819,
+      "hkd": 165222639636,
+      "huf": 6328542604181,
+      "idr": 307737473784358,
+      "ils": 69042624002,
+      "inr": 1575778508225,
+      "jpy": 2315156280754,
+      "krw": 23651815585808,
+      "kwd": 6405852563,
+      "lkr": 4191488962483,
+      "ltc": 81238004,
+      "mmk": 33143793999755,
+      "mxn": 426654256880,
+      "myr": 87343442623,
+      "ngn": 8698320672875,
+      "nok": 174594977260,
+      "nzd": 29370272638,
+      "php": 1025074580660,
+      "pkr": 3266468130741,
+      "pln": 80183599839,
+      "rub": 1589659167707,
+      "sar": 79819691882,
+      "sek": 178365864678,
+      "sgd": 28237393395,
+      "thb": 663639988393,
+      "try": 175001828102,
+      "twd": 593699181415,
+      "uah": 590612805269,
+      "usd": 21279922676,
+      "vef": 2130758658,
+      "vnd": 490818491656665,
+      "xag": 821920202,
+      "xau": 12031455,
+      "xdr": 14816933520,
+      "xlm": 41880358488,
+      "xrp": 14042555360,
+      "yfi": 438541,
+      "zar": 304702956811,
+      "bits": 393314757680,
+      "link": 575995945,
+      "sats": 39331475768034
+    },
+    "market_cap_rank": 9,
+    "fully_diluted_valuation": {
+      "aed": 150350904100,
+      "ars": 3826979137543,
+      "aud": 52643492277,
+      "bch": 45194693,
+      "bdt": 3471070008163,
+      "bhd": 15429065274,
+      "bmd": 40934154562,
+      "bnb": 67418445,
+      "brl": 218526984128,
+      "btc": 756582,
+      "cad": 50260797008,
+      "chf": 37211397875,
+      "clp": 29038717285963,
+      "cny": 264803045860,
+      "czk": 874062908940,
+      "dkk": 251190597431,
+      "dot": 1132286522,
+      "eos": 6616224645,
+      "eth": 14782648,
+      "eur": 33781033855,
+      "gbp": 29360063294,
+      "hkd": 317823009556,
+      "huf": 12173612895875,
+      "idr": 591965182778500,
+      "ils": 132810700739,
+      "inr": 3031174595569,
+      "jpy": 4453444990121,
+      "krw": 45496738385872,
+      "kwd": 12322326679,
+      "lkr": 8062766939879,
+      "ltc": 156269788,
+      "mmk": 63755550572908,
+      "mxn": 820714039312,
+      "myr": 168014237398,
+      "ngn": 16732128601903,
+      "nok": 335851680183,
+      "nzd": 56496787982,
+      "php": 1971838054169,
+      "pkr": 6283392725220,
+      "pln": 154241531755,
+      "rub": 3057875494314,
+      "sar": 153541516777,
+      "sek": 343105376108,
+      "sgd": 54317576396,
+      "thb": 1276580853794,
+      "try": 336634300284,
+      "twd": 1142042404260,
+      "uah": 1136105437285,
+      "usd": 40934154562,
+      "vef": 4098736896,
+      "vnd": 944140648688762,
+      "xag": 1581049382,
+      "xau": 23143762,
+      "xdr": 28501919677,
+      "xlm": 80561245150,
+      "xrp": 27012322380,
+      "yfi": 843580,
+      "zar": 586127972338,
+      "bits": 756582029340,
+      "link": 1107988378,
+      "sats": 75658202933997
+    },
+    "total_volume": {
+      "aed": 4898325710,
+      "ars": 124680263245,
+      "aud": 1715087603,
+      "bch": 1472411,
+      "bdt": 113084996496,
+      "bhd": 502667992,
+      "bmd": 1333605693,
+      "bnb": 2196445,
+      "brl": 7119453994,
+      "btc": 24649,
+      "cad": 1637461083,
+      "chf": 1212320924,
+      "clp": 946060792440,
+      "cny": 8627095231,
+      "czk": 28476349011,
+      "dkk": 8183611325,
+      "dot": 36889091,
+      "eos": 215551902,
+      "eth": 481608,
+      "eur": 1100562099,
+      "gbp": 956530017,
+      "hkd": 10354448005,
+      "huf": 396607665198,
+      "idr": 19285805374984,
+      "ils": 4326878338,
+      "inr": 98753516268,
+      "jpy": 145090075948,
+      "krw": 1482251435106,
+      "kwd": 401452655,
+      "lkr": 262679222546,
+      "ltc": 5091159,
+      "mmk": 2077110572877,
+      "mxn": 26738280715,
+      "myr": 5473784569,
+      "ngn": 545120870472,
+      "nok": 10941809294,
+      "nzd": 1840625241,
+      "php": 64241083851,
+      "pkr": 204708473942,
+      "pln": 5025079597,
+      "rub": 99623412592,
+      "sar": 5002273606,
+      "sek": 11178129558,
+      "sgd": 1769628075,
+      "thb": 41590097877,
+      "try": 10967306502,
+      "twd": 37206930710,
+      "uah": 37013508541,
+      "usd": 1333605693,
+      "vef": 133533938,
+      "vnd": 30759432018887,
+      "xag": 51509466,
+      "xau": 754007,
+      "xdr": 928572307,
+      "xlm": 2624628171,
+      "xrp": 880042285,
+      "yfi": 27483,
+      "zar": 19095633203,
+      "bits": 24648905362,
+      "link": 36097475,
+      "sats": 2464890536226
+    },
+    "high_24h": {
+      "aed": 157.86,
+      "ars": 4015.7,
+      "aud": 55.16,
+      "bch": 0.04833621,
+      "bdt": 3643.97,
+      "bhd": 16.2,
+      "bmd": 42.98,
+      "bnb": 0.07598733,
+      "brl": 229.64,
+      "btc": 0.00079593,
+      "cad": 52.91,
+      "chf": 39.12,
+      "clp": 29927,
+      "cny": 278.13,
+      "czk": 917.39,
+      "dkk": 263.51,
+      "dot": 1.278065,
+      "eos": 7.334604,
+      "eth": 0.01576479,
+      "eur": 35.44,
+      "gbp": 30.8,
+      "hkd": 333.63,
+      "huf": 12823.41,
+      "idr": 621504,
+      "ils": 139.61,
+      "inr": 3183.25,
+      "jpy": 4677.56,
+      "krw": 47590,
+      "kwd": 12.94,
+      "lkr": 8329.22,
+      "ltc": 0.16765364,
+      "mmk": 66931,
+      "mxn": 855.88,
+      "myr": 176.32,
+      "ngn": 17459.8,
+      "nok": 351.85,
+      "nzd": 59.21,
+      "php": 2081.03,
+      "pkr": 6636.02,
+      "pln": 162.27,
+      "rub": 3193.61,
+      "sar": 161.19,
+      "sek": 358.45,
+      "sgd": 56.94,
+      "thb": 1343.54,
+      "try": 351.96,
+      "twd": 1197.24,
+      "uah": 1194.22,
+      "usd": 42.98,
+      "vef": 4.3,
+      "vnd": 985520,
+      "xag": 1.63,
+      "xau": 0.02415813,
+      "xdr": 29.85,
+      "xlm": 86.894,
+      "xrp": 31.001689,
+      "yfi": 0.00090302,
+      "zar": 611.34,
+      "bits": 795.93,
+      "link": 1.207922,
+      "sats": 79593
+    },
+    "low_24h": {
+      "aed": 144.78,
+      "ars": 3685.3,
+      "aud": 50.78,
+      "bch": 0.04508413,
+      "bdt": 3341.67,
+      "bhd": 14.86,
+      "bmd": 39.42,
+      "bnb": 0.06633767,
+      "brl": 211.32,
+      "btc": 0.00074444,
+      "cad": 48.44,
+      "chf": 35.85,
+      "clp": 27829,
+      "cny": 255.12,
+      "czk": 841.39,
+      "dkk": 241.86,
+      "dot": 1.100225,
+      "eos": 6.55538,
+      "eth": 0.01453938,
+      "eur": 32.53,
+      "gbp": 28.27,
+      "hkd": 306.01,
+      "huf": 11722.43,
+      "idr": 569018,
+      "ils": 128.08,
+      "inr": 2921.12,
+      "jpy": 4292.17,
+      "krw": 43697,
+      "kwd": 11.87,
+      "lkr": 7639.11,
+      "ltc": 0.15460057,
+      "mmk": 61379,
+      "mxn": 790.06,
+      "myr": 161.71,
+      "ngn": 15268.2,
+      "nok": 323.92,
+      "nzd": 54.49,
+      "php": 1905.65,
+      "pkr": 6049.14,
+      "pln": 148.72,
+      "rub": 2941.03,
+      "sar": 147.83,
+      "sek": 330.53,
+      "sgd": 52.28,
+      "thb": 1230.25,
+      "try": 324.24,
+      "twd": 1098.44,
+      "uah": 1093.8,
+      "usd": 39.42,
+      "vef": 3.95,
+      "vnd": 909072,
+      "xag": 1.52,
+      "xau": 0.0222907,
+      "xdr": 27.35,
+      "xlm": 79.888,
+      "xrp": 26.695506,
+      "yfi": 0.00083724,
+      "zar": 564.57,
+      "bits": 744.44,
+      "link": 1.096594,
+      "sats": 74444
+    },
+    "price_change_24h": -1.47563289,
+    "price_change_percentage_24h": -3.47946,
+    "price_change_percentage_7d": 18.56798,
+    "price_change_percentage_14d": 8.11725,
+    "price_change_percentage_30d": 43.40144,
+    "price_change_percentage_60d": 84.72924,
+    "price_change_percentage_200d": 1113.21037,
+    "price_change_percentage_1y": 0,
+    "market_cap_change_24h": -653725802.185,
+    "market_cap_change_percentage_24h": -2.98047,
+    "price_change_24h_in_currency": {
+      "aed": -5.42126303,
+      "ars": -134.92624187,
+      "aud": -1.7668655,
+      "bch": -0.0028381627,
+      "bdt": -124.60582139,
+      "bhd": -0.55972146,
+      "bmd": -1.47563289,
+      "bnb": -0.0080644186,
+      "brl": -8.04302192,
+      "btc": -0.0000313241,
+      "cad": -1.93017177,
+      "chf": -1.35975248,
+      "clp": -491.18446434,
+      "cny": -9.5925199,
+      "czk": -30.47424263,
+      "dkk": -8.66549367,
+      "dot": -0.140376714,
+      "eos": -0.668177738,
+      "eth": -0.0008800996,
+      "eur": -1.16429172,
+      "gbp": -1.02396242,
+      "hkd": -11.38508599,
+      "huf": -470.65318261,
+      "idr": -20907.13758044,
+      "ils": -4.86164766,
+      "inr": -111.19997987,
+      "jpy": -152.73503677,
+      "krw": -1415.72011387,
+      "kwd": -0.44217115,
+      "lkr": -156.06021085,
+      "ltc": -0.0101717229,
+      "mmk": -2288.68723386,
+      "mxn": -23.37983499,
+      "myr": -5.9719156,
+      "ngn": -495.68963415,
+      "nok": -10.64862451,
+      "nzd": -1.90560308,
+      "php": -80.19199737,
+      "pkr": -264.67845665,
+      "pln": -5.77958716,
+      "rub": -93.90116137,
+      "sar": -5.4953982,
+      "sek": -10.09796513,
+      "sgd": -1.85800396,
+      "thb": -48.72500393,
+      "try": -11.2022944,
+      "twd": -38.66728317,
+      "uah": -42.28893021,
+      "usd": -1.47563289,
+      "vef": -0.14775512,
+      "vnd": -27757.30029095,
+      "xag": -0.02489603,
+      "xau": -0.00061802,
+      "xdr": -0.95150807,
+      "xlm": -5.5787524241,
+      "xrp": -3.8881529587,
+      "yfi": -0.0000551843,
+      "zar": -17.32492218,
+      "bits": -31.32405315,
+      "link": -0.0918834862,
+      "sats": -3132.40531545
+    },
+    "price_change_percentage_1h_in_currency": {
+      "aed": 1.33774,
+      "ars": 1.33683,
+      "aud": 1.36487,
+      "bch": -0.49571,
+      "bdt": 1.33791,
+      "bhd": 1.307,
+      "bmd": 1.33791,
+      "bnb": 1.62921,
+      "brl": 1.33791,
+      "btc": 1.27099,
+      "cad": 1.36813,
+      "chf": 1.33724,
+      "clp": 1.33791,
+      "cny": 1.34888,
+      "czk": 1.35642,
+      "dkk": 1.32891,
+      "dot": 1.78847,
+      "eos": 0.77107,
+      "eth": 1.10615,
+      "eur": 1.33042,
+      "gbp": 1.35883,
+      "hkd": 1.3413,
+      "huf": 1.38734,
+      "idr": 1.42442,
+      "ils": 1.1912,
+      "inr": 1.27297,
+      "jpy": 1.31727,
+      "krw": 1.45337,
+      "kwd": 1.32377,
+      "lkr": 1.33791,
+      "ltc": 0.86984,
+      "mmk": 1.33791,
+      "mxn": 1.4169,
+      "myr": 1.33791,
+      "ngn": 1.33791,
+      "nok": 1.4083,
+      "nzd": 1.3717,
+      "php": 1.3,
+      "pkr": 1.33791,
+      "pln": 1.3331,
+      "rub": 1.29127,
+      "sar": 1.33513,
+      "sek": 1.38841,
+      "sgd": 1.3512,
+      "thb": 1.2931,
+      "try": 1.33052,
+      "twd": 1.35789,
+      "uah": 1.33791,
+      "usd": 1.33791,
+      "vef": 1.33791,
+      "vnd": 1.34994,
+      "xag": 1.61969,
+      "xau": 1.3415,
+      "xdr": 1.33791,
+      "xlm": -1.15938,
+      "xrp": -4.52258,
+      "yfi": 0.41396,
+      "zar": 1.49662,
+      "bits": 1.27099,
+      "link": 0.98204,
+      "sats": 1.27099
+    },
+    "price_change_percentage_24h_in_currency": {
+      "aed": -3.48025,
+      "ars": -3.40559,
+      "aud": -3.2473,
+      "bch": -5.90879,
+      "bdt": -3.46544,
+      "bhd": -3.50071,
+      "bmd": -3.47946,
+      "bnb": -10.68377,
+      "brl": -3.54991,
+      "btc": -3.97561,
+      "cad": -3.69829,
+      "chf": -3.52531,
+      "clp": -1.66335,
+      "cny": -3.49587,
+      "czk": -3.36904,
+      "dkk": -3.33473,
+      "dot": -11.03015,
+      "eos": -9.17272,
+      "eth": -5.61906,
+      "eur": -3.33175,
+      "gbp": -3.37007,
+      "hkd": -3.45833,
+      "huf": -3.72227,
+      "idr": -3.41134,
+      "ils": -3.53132,
+      "inr": -3.53872,
+      "jpy": -3.31587,
+      "krw": -3.01779,
+      "kwd": -3.46407,
+      "lkr": -1.89881,
+      "ltc": -6.11129,
+      "mmk": -3.46539,
+      "mxn": -2.76981,
+      "myr": -3.43241,
+      "ngn": -2.87726,
+      "nok": -3.07319,
+      "nzd": -3.26289,
+      "php": -3.90793,
+      "pkr": -4.04208,
+      "pln": -3.61177,
+      "rub": -2.97931,
+      "sar": -3.45542,
+      "sek": -2.85897,
+      "sgd": -3.30749,
+      "thb": -3.67651,
+      "try": -3.22056,
+      "twd": -3.27492,
+      "uah": -3.58869,
+      "usd": -3.47946,
+      "vef": -3.47946,
+      "vnd": -2.85599,
+      "xag": -1.55024,
+      "xau": -2.60089,
+      "xdr": -3.23055,
+      "xlm": -6.47638,
+      "xrp": -12.58283,
+      "yfi": -6.14002,
+      "zar": -2.87097,
+      "bits": -3.97561,
+      "link": -7.65777,
+      "sats": -3.97561
+    },
+    "price_change_percentage_7d_in_currency": {
+      "aed": 18.56133,
+      "ars": 19.1129,
+      "aud": 17.45314,
+      "bch": 13.07608,
+      "bdt": 18.60248,
+      "bhd": 18.54597,
+      "bmd": 18.56798,
+      "bnb": 0.3379,
+      "brl": 16.25102,
+      "btc": 14.22548,
+      "cad": 16.42923,
+      "chf": 17.51071,
+      "clp": 19.00412,
+      "cny": 18.16066,
+      "czk": 17.6331,
+      "dkk": 17.54551,
+      "dot": 9.16488,
+      "eos": 13.62008,
+      "eth": 3.9201,
+      "eur": 17.54967,
+      "gbp": 17.66245,
+      "hkd": 18.63368,
+      "huf": 16.41437,
+      "idr": 17.81642,
+      "ils": 18.08487,
+      "inr": 16.92311,
+      "jpy": 19.46879,
+      "krw": 17.69868,
+      "kwd": 18.46055,
+      "lkr": 20.10609,
+      "ltc": 15.36691,
+      "mmk": 31.00866,
+      "mxn": 19.20398,
+      "myr": 18.34338,
+      "ngn": 22.76323,
+      "nok": 16.35037,
+      "nzd": 17.04558,
+      "php": 17.98638,
+      "pkr": 18.52322,
+      "pln": 17.57717,
+      "rub": 17.25312,
+      "sar": 18.58154,
+      "sek": 17.84358,
+      "sgd": 18.34413,
+      "thb": 17.78578,
+      "try": 17.15416,
+      "twd": 17.82973,
+      "uah": 17.34223,
+      "usd": 18.56798,
+      "vef": 18.56798,
+      "vnd": 18.17175,
+      "xag": 19.6487,
+      "xau": 19.56401,
+      "xdr": 18.47083,
+      "xlm": 5.02417,
+      "xrp": -7.47205,
+      "yfi": 12.45994,
+      "zar": 18.59038,
+      "bits": 14.22548,
+      "link": 14.80854,
+      "sats": 14.22548
+    },
+    "price_change_percentage_14d_in_currency": {
+      "aed": 8.11707,
+      "ars": 9.01111,
+      "aud": 7.79906,
+      "bch": 3.08982,
+      "bdt": 8.15707,
+      "bhd": 8.07453,
+      "bmd": 8.11725,
+      "bnb": -3.30842,
+      "brl": 2.76394,
+      "btc": 26.21927,
+      "cad": 5.83268,
+      "chf": 6.6039,
+      "clp": 9.80455,
+      "cny": 7.2255,
+      "czk": 6.59664,
+      "dkk": 6.78424,
+      "dot": 30.13996,
+      "eos": 36.93919,
+      "eth": -1.86521,
+      "eur": 6.80032,
+      "gbp": 6.90298,
+      "hkd": 8.07257,
+      "huf": 7.13014,
+      "idr": 7.42013,
+      "ils": 6.94369,
+      "inr": 7.13682,
+      "jpy": 8.23846,
+      "krw": 7.60999,
+      "kwd": 7.92723,
+      "lkr": 5.98628,
+      "ltc": 18.23676,
+      "mmk": 19.47047,
+      "mxn": 8.66174,
+      "myr": 7.59298,
+      "ngn": 12.72641,
+      "nok": 5.84626,
+      "nzd": 7.11931,
+      "php": 7.504,
+      "pkr": 8.68494,
+      "pln": 7.12375,
+      "rub": 6.16066,
+      "sar": 8.13965,
+      "sek": 7.2846,
+      "sgd": 7.5096,
+      "thb": 8.17513,
+      "try": 10.67148,
+      "twd": 6.52056,
+      "uah": 7.34966,
+      "usd": 8.11725,
+      "vef": 8.11725,
+      "vnd": 8.1543,
+      "xag": 7.96893,
+      "xau": 7.84259,
+      "xdr": 7.39357,
+      "xlm": 35.9003,
+      "xrp": 25.21494,
+      "yfi": 12.06198,
+      "zar": 9.2499,
+      "bits": 26.21927,
+      "link": 25.0573,
+      "sats": 26.21927
+    },
+    "price_change_percentage_30d_in_currency": {
+      "aed": 43.3934,
+      "ars": 45.79806,
+      "aud": 40.30814,
+      "bch": -16.96048,
+      "bdt": 43.49276,
+      "bhd": 43.36721,
+      "bmd": 43.40144,
+      "bnb": -26.92559,
+      "brl": 32.59697,
+      "btc": 55.53062,
+      "cad": 39.48945,
+      "chf": 38.42573,
+      "clp": 39.48866,
+      "cny": 41.15398,
+      "czk": 37.22553,
+      "dkk": 38.70726,
+      "dot": 34.56855,
+      "eos": 0.50573,
+      "eth": -4.73106,
+      "eur": 38.7506,
+      "gbp": 41.39695,
+      "hkd": 43.20593,
+      "huf": 37.51244,
+      "idr": 42.50961,
+      "ils": 39.44882,
+      "inr": 44.58165,
+      "jpy": 41.40633,
+      "krw": 40.58094,
+      "kwd": 42.85901,
+      "lkr": 41.94224,
+      "ltc": 7.11434,
+      "mmk": 58.40871,
+      "mxn": 39.72015,
+      "myr": 41.79504,
+      "ngn": 49.48286,
+      "nok": 37.68516,
+      "nzd": 38.3249,
+      "php": 42.37056,
+      "pkr": 43.81357,
+      "pln": 36.02234,
+      "rub": 41.0763,
+      "sar": 43.42484,
+      "sek": 37.64158,
+      "sgd": 41.23547,
+      "thb": 42.88008,
+      "try": 41.5953,
+      "twd": 40.59701,
+      "uah": 42.72252,
+      "usd": 43.40144,
+      "vef": 43.40144,
+      "vnd": 43.25112,
+      "xag": 33.04942,
+      "xau": 36.65556,
+      "xdr": 41.62273,
+      "xlm": 13.66536,
+      "xrp": -46.36534,
+      "yfi": 4.93719,
+      "zar": 37.70801,
+      "bits": 55.53062,
+      "link": 7.78191,
+      "sats": 55.53062
+    },
+    "price_change_percentage_60d_in_currency": {
+      "aed": 84.72688,
+      "ars": 92.47965,
+      "aud": 84.26916,
+      "bch": -5.92654,
+      "bdt": 84.78567,
+      "bhd": 84.59309,
+      "bmd": 84.72924,
+      "bnb": -35.71219,
+      "brl": 76.05752,
+      "btc": 54.72908,
+      "cad": 78.64129,
+      "chf": 85.03578,
+      "clp": 81.02911,
+      "cny": 84.51019,
+      "czk": 82.07943,
+      "dkk": 84.29991,
+      "dot": 72.39689,
+      "eos": 3.43941,
+      "eth": -5.27745,
+      "eur": 84.31137,
+      "gbp": 85.19633,
+      "hkd": 84.90857,
+      "huf": 83.28411,
+      "idr": 87.0732,
+      "ils": 80.89708,
+      "inr": 85.62217,
+      "jpy": 88.72478,
+      "krw": 82.52491,
+      "kwd": 83.66033,
+      "lkr": 87.12845,
+      "ltc": 16.48529,
+      "mmk": 104.11499,
+      "mxn": 78.15992,
+      "myr": 87.00732,
+      "ngn": 89.05257,
+      "nok": 75.71219,
+      "nzd": 85.41168,
+      "php": 82.77796,
+      "pkr": 79.74734,
+      "pln": 86.16399,
+      "rub": 85.16704,
+      "sar": 84.75333,
+      "sek": 83.90792,
+      "sgd": 84.39851,
+      "thb": 89.64707,
+      "try": 104.6285,
+      "twd": 84.96791,
+      "uah": 83.447,
+      "usd": 84.72924,
+      "vef": 84.72924,
+      "vnd": 84.85709,
+      "xag": 91.10795,
+      "xau": 81.65449,
+      "xdr": 85.63732,
+      "xlm": 48.28365,
+      "xrp": -49.30429,
+      "yfi": 16.75872,
+      "zar": 75.78553,
+      "bits": 54.72908,
+      "link": 23.6058,
+      "sats": 54.72908
+    },
+    "price_change_percentage_200d_in_currency": {
+      "aed": 1113.22226,
+      "ars": 1369.52266,
+      "aud": 1027.75041,
+      "bch": 220.67002,
+      "bdt": 1113.88392,
+      "bhd": 1112.72454,
+      "bmd": 1113.21037,
+      "bnb": -43.04619,
+      "brl": 1071.09187,
+      "btc": 155.18096,
+      "cad": 1034.71393,
+      "chf": 1111.41801,
+      "clp": 982.99216,
+      "cny": 1072.30912,
+      "czk": 1031.69607,
+      "dkk": 1082.47054,
+      "dot": 42.63502,
+      "eos": 421.41025,
+      "eth": 63.88742,
+      "eur": 1083.59794,
+      "gbp": 1034.33154,
+      "hkd": 1115.43641,
+      "huf": 1097.04922,
+      "idr": 1094.28371,
+      "ils": 1065.44037,
+      "inr": 1130.40711,
+      "jpy": 1149.62487,
+      "krw": 1079.06411,
+      "kwd": 1093.11168,
+      "lkr": 1197.16999,
+      "ltc": 134.51101,
+      "mmk": 1378.39389,
+      "mxn": 1050.48381,
+      "myr": 1101.35632,
+      "ngn": 1192.98472,
+      "nok": 988.69623,
+      "nzd": 1016.3353,
+      "php": 1107.2844,
+      "pkr": 1037.05481,
+      "pln": 1109.48342,
+      "rub": 1079.26071,
+      "sar": 1113.12596,
+      "sek": 1055.78308,
+      "sgd": 1088.00001,
+      "thb": 1118.13993,
+      "try": 1168.29494,
+      "twd": 1082.83343,
+      "uah": 1093.56673,
+      "usd": 1113.21037,
+      "vef": -99.99951,
+      "vnd": 1109.78306,
+      "xag": 1084.69581,
+      "xau": 1224.63745,
+      "xdr": 1093.58772,
+      "xlm": 84.51483,
+      "xrp": 104.27344,
+      "yfi": 322.4396,
+      "zar": 952.83999,
+      "bits": 155.18096,
+      "link": 256.6727,
+      "sats": 155.18096
+    },
+    "price_change_percentage_1y_in_currency": {},
+    "market_cap_change_24h_in_currency": {
+      "aed": -2401788958.5246887,
+      "ars": -59549288478.474365,
+      "aud": -773038789.8741418,
+      "bch": -1385635.3696723916,
+      "bdt": -55163345192.71631,
+      "bhd": -248225437.0864277,
+      "bmd": -653725802.1849556,
+      "bnb": -4034172.0777827953,
+      "brl": -3575434490.379914,
+      "btc": -14448.3762911243,
+      "cad": -863868836.83741,
+      "chf": -603748045.2477417,
+      "clp": -176390516280.43164,
+      "cny": -4253079227.65979,
+      "czk": -13423760658.61188,
+      "dkk": -3810032605.2306824,
+      "dot": -70689462.50228179,
+      "eos": -337399541.10679245,
+      "eth": -428533.5917032436,
+      "eur": -511830848.69974893,
+      "gbp": -451075362.7787895,
+      "hkd": -5038403357.20163,
+      "huf": -210865021299.29688,
+      "idr": -9230067101241.375,
+      "ils": -2159263033.231659,
+      "inr": -49406230312.98877,
+      "jpy": -67084697504.24512,
+      "krw": -610540721704.3633,
+      "kwd": -195736955.65318012,
+      "lkr": -59154025281.78613,
+      "ltc": -5223865.674358889,
+      "mmk": -1013205675174.7461,
+      "mxn": -9897290199.341614,
+      "myr": -2639350258.111679,
+      "ngn": -211625166916.9287,
+      "nok": -4609313497.237335,
+      "nzd": -834488879.9431038,
+      "php": -36201802123.992676,
+      "pkr": -120087194265.60645,
+      "pln": -2576705801.5932007,
+      "rub": -40388172963.67236,
+      "sar": -2431599579.0432587,
+      "sek": -4305126955.933105,
+      "sgd": -815698042.8011551,
+      "thb": -21786526545.229736,
+      "try": -4893569985.491913,
+      "twd": -16944559037.777222,
+      "uah": -18833489577.902588,
+      "usd": -653725802.1849556,
+      "vef": -65457564.57277823,
+      "vnd": -11831232676513.875,
+      "xag": -8648502.8059628,
+      "xau": -257748.42405942,
+      "xdr": -415897613.20178795,
+      "xlm": -2722160009.0919495,
+      "xrp": -1970131004.153986,
+      "yfi": -27833.20733309,
+      "zar": -7393011079.604431,
+      "bits": -14448376291.124329,
+      "link": -45665392.67761159,
+      "sats": -1444837629112.4375
+    },
+    "market_cap_change_percentage_24h_in_currency": {
+      "aed": -2.98126,
+      "ars": -2.90621,
+      "aud": -2.7471,
+      "bch": -5.56918,
+      "bdt": -2.96637,
+      "bhd": -3.00183,
+      "bmd": -2.98047,
+      "bnb": -10.32229,
+      "brl": -3.05128,
+      "btc": -3.54333,
+      "cad": -3.20043,
+      "chf": -3.02655,
+      "clp": -1.15496,
+      "cny": -2.99696,
+      "czk": -2.86948,
+      "dkk": -2.83499,
+      "dot": -10.72162,
+      "eos": -8.93326,
+      "eth": -5.2818,
+      "eur": -2.832,
+      "gbp": -2.87051,
+      "hkd": -2.95922,
+      "huf": -3.22453,
+      "idr": -2.91199,
+      "ils": -3.03259,
+      "inr": -3.04004,
+      "jpy": -2.81603,
+      "krw": -2.51641,
+      "kwd": -2.965,
+      "lkr": -1.39165,
+      "ltc": -6.04181,
+      "mmk": -2.96632,
+      "mxn": -2.26715,
+      "myr": -2.93317,
+      "ngn": -2.37516,
+      "nok": -2.5721,
+      "nzd": -2.76277,
+      "php": -3.41116,
+      "pkr": -3.546,
+      "pln": -3.11346,
+      "rub": -2.47773,
+      "sar": -2.95631,
+      "sek": -2.35677,
+      "sgd": -2.80761,
+      "thb": -3.17854,
+      "try": -2.72023,
+      "twd": -2.77487,
+      "uah": -3.09026,
+      "usd": -2.98047,
+      "vef": -2.98047,
+      "vnd": -2.35377,
+      "xag": -1.04127,
+      "xau": -2.09736,
+      "xdr": -2.73027,
+      "xlm": -6.10315,
+      "xrp": -12.30356,
+      "yfi": -5.96799,
+      "zar": -2.36883,
+      "bits": -3.54333,
+      "link": -7.3457,
+      "sats": -3.54333
+    },
+    "total_supply": 1000000000,
+    "max_supply": 1000000000,
+    "circulating_supply": 519857388.1320768,
+    "last_updated": "2021-04-30T05:49:51.094Z"
+  },
+  "public_interest_stats": {
+    "alexa_rank": 3614,
+    "bing_matches": null
+  },
+  "status_updates": [],
+  "last_updated": "2021-04-30T05:49:51.094Z",
+  "tickers": [
+    {
+      "base": "UNI",
+      "target": "USD",
+      "market": {
+        "name": "Bitfinex",
+        "identifier": "bitfinex",
+        "has_trading_incentive": false
+      },
+      "last": 40.824,
+      "volume": 99993.77435267,
+      "converted_last": {
+        "btc": 0.00075455,
+        "eth": 0.01474287,
+        "usd": 40.82
+      },
+      "converted_volume": {
+        "btc": 75.45,
+        "eth": 1474,
+        "usd": 4082146
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.12207,
+      "timestamp": "2021-04-30T05:49:39+00:00",
+      "last_traded_at": "2021-04-30T05:49:39+00:00",
+      "last_fetch_at": "2021-04-30T05:49:39+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.bitfinex.com/t/UNIUSD",
+      "token_info_url": null,
+      "coin_id": "uniswap"
+    },
+    {
+      "base": "0X1F9840A85D5AF5BF1D1762F925BDADDC4201F984",
+      "target": "ETH",
+      "market": {
+        "name": "Uniswap (v2)",
+        "identifier": "uniswap",
+        "has_trading_incentive": false
+      },
+      "last": 0.0146837110714833,
+      "volume": 475036.315954578,
+      "converted_last": {
+        "btc": 0.00075078,
+        "eth": 0.01465993,
+        "usd": 40.56
+      },
+      "converted_volume": {
+        "btc": 356.647,
+        "eth": 6964,
+        "usd": 19269715
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.602714,
+      "timestamp": "2021-04-30T05:40:24+00:00",
+      "last_traded_at": "2021-04-30T05:40:24+00:00",
+      "last_fetch_at": "2021-04-30T05:40:24+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://app.uniswap.org/#/swap?outputCurrency=0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+      "token_info_url": "https://info.uniswap.org/token/0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+      "coin_id": "uniswap",
+      "target_coin_id": "ethereum"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "Binance",
+        "identifier": "binance",
+        "has_trading_incentive": false
+      },
+      "last": 40.975,
+      "volume": 4184080.5253232946,
+      "converted_last": {
+        "btc": 0.00075788,
+        "eth": 0.01480803,
+        "usd": 40.96
+      },
+      "converted_volume": {
+        "btc": 3171,
+        "eth": 61958,
+        "usd": 171388376
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.019829,
+      "timestamp": "2021-04-30T05:48:20+00:00",
+      "last_traded_at": "2021-04-30T05:48:20+00:00",
+      "last_fetch_at": "2021-04-30T05:48:20+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.binance.com/en/trade/UNI_USDT?ref=37754157",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "CoinBene",
+        "identifier": "coinbene",
+        "has_trading_incentive": false
+      },
+      "last": 40.884,
+      "volume": 5972286.589301438,
+      "converted_last": {
+        "btc": 0.0007562,
+        "eth": 0.01477514,
+        "usd": 40.91
+      },
+      "converted_volume": {
+        "btc": 4516,
+        "eth": 88241,
+        "usd": 244346346
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.10012,
+      "timestamp": "2021-04-30T05:49:35+00:00",
+      "last_traded_at": "2021-04-30T05:49:35+00:00",
+      "last_fetch_at": "2021-04-30T05:49:35+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.coinbene.com/spot/exchange/UNI_USDT",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "OKEx",
+        "identifier": "okex",
+        "has_trading_incentive": false
+      },
+      "last": 40.96,
+      "volume": 3996179.320028,
+      "converted_last": {
+        "btc": 0.0007576,
+        "eth": 0.01480261,
+        "usd": 40.95
+      },
+      "converted_volume": {
+        "btc": 3028,
+        "eth": 59154,
+        "usd": 163631640
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.017096,
+      "timestamp": "2021-04-30T05:48:25+00:00",
+      "last_traded_at": "2021-04-30T05:48:25+00:00",
+      "last_fetch_at": "2021-04-30T05:48:25+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.okex.com/markets/spot-info/uni-usdt",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "Huobi Global",
+        "identifier": "huobi",
+        "has_trading_incentive": false
+      },
+      "last": 40.9607,
+      "volume": 3731448.1788707674,
+      "converted_last": {
+        "btc": 0.00075762,
+        "eth": 0.01479296,
+        "usd": 41.01
+      },
+      "converted_volume": {
+        "btc": 2827,
+        "eth": 55199,
+        "usd": 153017749
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.013673,
+      "timestamp": "2021-04-30T05:50:27+00:00",
+      "last_traded_at": "2021-04-30T05:50:27+00:00",
+      "last_fetch_at": "2021-04-30T05:50:27+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.hbg.com/en-us/exchange/?s=uni_usdt",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "USD",
+      "market": {
+        "name": "Coinbase Pro",
+        "identifier": "gdax",
+        "has_trading_incentive": false
+      },
+      "last": 40.9215,
+      "volume": 807263.539563,
+      "converted_last": {
+        "btc": 0.00075635,
+        "eth": 0.01477808,
+        "usd": 40.92
+      },
+      "converted_volume": {
+        "btc": 610.572,
+        "eth": 11930,
+        "usd": 33034435
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.010244,
+      "timestamp": "2021-04-30T05:49:28+00:00",
+      "last_traded_at": "2021-04-30T05:49:28+00:00",
+      "last_fetch_at": "2021-04-30T05:49:28+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://pro.coinbase.com/trade/UNI-USD",
+      "token_info_url": null,
+      "coin_id": "uniswap"
+    },
+    {
+      "base": "UNI",
+      "target": "BTC",
+      "market": {
+        "name": "Binance",
+        "identifier": "binance",
+        "has_trading_incentive": false
+      },
+      "last": 0.00075675,
+      "volume": 760941.3686818632,
+      "converted_last": {
+        "btc": 0.00075675,
+        "eth": 0.01478593,
+        "usd": 40.9
+      },
+      "converted_volume": {
+        "btc": 575.842,
+        "eth": 11251,
+        "usd": 31123180
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.073051,
+      "timestamp": "2021-04-30T05:48:32+00:00",
+      "last_traded_at": "2021-04-30T05:48:32+00:00",
+      "last_fetch_at": "2021-04-30T05:48:32+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.binance.com/en/trade/UNI_BTC?ref=37754157",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "bitcoin"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "Gate.io",
+        "identifier": "gate",
+        "has_trading_incentive": false
+      },
+      "last": 40.866,
+      "volume": 698856.7078759911,
+      "converted_last": {
+        "btc": 0.00075586,
+        "eth": 0.01477859,
+        "usd": 40.85
+      },
+      "converted_volume": {
+        "btc": 528.241,
+        "eth": 10328,
+        "usd": 28549575
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.041583,
+      "timestamp": "2021-04-30T05:47:31+00:00",
+      "last_traded_at": "2021-04-30T05:47:31+00:00",
+      "last_fetch_at": "2021-04-30T05:47:31+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://gate.io/trade/UNI_USDT",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "USD",
+      "market": {
+        "name": "Kraken",
+        "identifier": "kraken",
+        "has_trading_incentive": false
+      },
+      "last": 41.026,
+      "volume": 102376.19314252,
+      "converted_last": {
+        "btc": 0.00075906,
+        "eth": 0.01483116,
+        "usd": 41.03
+      },
+      "converted_volume": {
+        "btc": 77.71,
+        "eth": 1518,
+        "usd": 4200086
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.090266,
+      "timestamp": "2021-04-30T05:48:31+00:00",
+      "last_traded_at": "2021-04-30T05:48:31+00:00",
+      "last_fetch_at": "2021-04-30T05:48:31+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://trade.kraken.com/markets/kraken/uni/usd",
+      "token_info_url": null,
+      "coin_id": "uniswap"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "HBTC",
+        "identifier": "hbtc",
+        "has_trading_incentive": false
+      },
+      "last": 40.8061,
+      "volume": 2642085.236,
+      "converted_last": {
+        "btc": 0.00075476,
+        "eth": 0.01473712,
+        "usd": 40.85
+      },
+      "converted_volume": {
+        "btc": 1994,
+        "eth": 38937,
+        "usd": 107936650
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.531445,
+      "timestamp": "2021-04-30T05:50:39+00:00",
+      "last_traded_at": "2021-04-30T05:50:39+00:00",
+      "last_fetch_at": "2021-04-30T05:50:39+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.bhex.com/exchange/301/UNI/USDT",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "BTC",
+      "market": {
+        "name": "Coinbase Pro",
+        "identifier": "gdax",
+        "has_trading_incentive": false
+      },
+      "last": 0.00075533,
+      "volume": 114379.580435,
+      "converted_last": {
+        "btc": 0.00075533,
+        "eth": 0.01475818,
+        "usd": 40.87
+      },
+      "converted_volume": {
+        "btc": 86.394,
+        "eth": 1688,
+        "usd": 4674283
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.120498,
+      "timestamp": "2021-04-30T05:49:14+00:00",
+      "last_traded_at": "2021-04-30T05:49:14+00:00",
+      "last_fetch_at": "2021-04-30T05:49:14+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://pro.coinbase.com/trade/UNI-BTC",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "bitcoin"
+    },
+    {
+      "base": "UNI",
+      "target": "BTC",
+      "market": {
+        "name": "Bitcoin.com Exchange",
+        "identifier": "bitcoin_com",
+        "has_trading_incentive": false
+      },
+      "last": 0.00075545,
+      "volume": 9623.06,
+      "converted_last": {
+        "btc": 0.00075545,
+        "eth": 0.01477048,
+        "usd": 40.83
+      },
+      "converted_volume": {
+        "btc": 7.269741,
+        "eth": 142.137,
+        "usd": 392904
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.115107,
+      "timestamp": "2021-04-30T05:46:54+00:00",
+      "last_traded_at": "2021-04-30T05:46:54+00:00",
+      "last_fetch_at": "2021-04-30T05:46:54+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://exchange.bitcoin.com/exchange/UNI-to-BTC",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "bitcoin"
+    },
+    {
+      "base": "UNI",
+      "target": "BTC",
+      "market": {
+        "name": "HitBTC",
+        "identifier": "hitbtc",
+        "has_trading_incentive": false
+      },
+      "last": 0.00075545,
+      "volume": 9623.06,
+      "converted_last": {
+        "btc": 0.00075545,
+        "eth": 0.01477048,
+        "usd": 40.83
+      },
+      "converted_volume": {
+        "btc": 7.269741,
+        "eth": 142.137,
+        "usd": 392904
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.123013,
+      "timestamp": "2021-04-30T05:47:09+00:00",
+      "last_traded_at": "2021-04-30T05:47:09+00:00",
+      "last_fetch_at": "2021-04-30T05:47:09+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://hitbtc.com/UNI-to-BTC",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "bitcoin"
+    },
+    {
+      "base": "UNI",
+      "target": "EUR",
+      "market": {
+        "name": "Kraken",
+        "identifier": "kraken",
+        "has_trading_incentive": false
+      },
+      "last": 33.819,
+      "volume": 61387.4910397,
+      "converted_last": {
+        "btc": 0.00075822,
+        "eth": 0.01481459,
+        "usd": 40.98
+      },
+      "converted_volume": {
+        "btc": 46.545017,
+        "eth": 909.43,
+        "usd": 2515669
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.082689,
+      "timestamp": "2021-04-30T05:48:31+00:00",
+      "last_traded_at": "2021-04-30T05:48:31+00:00",
+      "last_fetch_at": "2021-04-30T05:48:31+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://trade.kraken.com/markets/kraken/uni/eur",
+      "token_info_url": null,
+      "coin_id": "uniswap"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "Digifinex",
+        "identifier": "digifinex",
+        "has_trading_incentive": false
+      },
+      "last": 40.9561,
+      "volume": 794837.1338,
+      "converted_last": {
+        "btc": 0.00075753,
+        "eth": 0.0148012,
+        "usd": 40.99
+      },
+      "converted_volume": {
+        "btc": 602.114,
+        "eth": 11765,
+        "usd": 32576811
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.315269,
+      "timestamp": "2021-04-30T05:49:25+00:00",
+      "last_traded_at": "2021-04-30T05:49:25+00:00",
+      "last_fetch_at": "2021-04-30T05:49:25+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.digifinex.com/en-ww/trade/USDT/UNI",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "USD",
+      "market": {
+        "name": "Binance US",
+        "identifier": "binance_us",
+        "has_trading_incentive": false
+      },
+      "last": 40.9685,
+      "volume": 102223.91186887487,
+      "converted_last": {
+        "btc": 0.000758,
+        "eth": 0.01481037,
+        "usd": 40.97
+      },
+      "converted_volume": {
+        "btc": 77.486,
+        "eth": 1514,
+        "usd": 4187960
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.068556,
+      "timestamp": "2021-04-30T05:48:28+00:00",
+      "last_traded_at": "2021-04-30T05:48:28+00:00",
+      "last_fetch_at": "2021-04-30T05:48:28+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.binance.us/en/trade/UNI_USD",
+      "token_info_url": null,
+      "coin_id": "uniswap"
+    },
+    {
+      "base": "UNI",
+      "target": "BUSD",
+      "market": {
+        "name": "Binance",
+        "identifier": "binance",
+        "has_trading_incentive": false
+      },
+      "last": 40.843,
+      "volume": 472593.7300270793,
+      "converted_last": {
+        "btc": 0.00075589,
+        "eth": 0.01477907,
+        "usd": 40.85
+      },
+      "converted_volume": {
+        "btc": 357.229,
+        "eth": 6984,
+        "usd": 19306948
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.11553,
+      "timestamp": "2021-04-30T05:46:32+00:00",
+      "last_traded_at": "2021-04-30T05:46:32+00:00",
+      "last_fetch_at": "2021-04-30T05:46:32+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.binance.com/en/trade/UNI_BUSD?ref=37754157",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "binance-usd"
+    },
+    {
+      "base": "UNI",
+      "target": "USD",
+      "market": {
+        "name": "Gemini",
+        "identifier": "gemini",
+        "has_trading_incentive": false
+      },
+      "last": 41,
+      "volume": 49329.28476724,
+      "converted_last": {
+        "btc": 0.00075858,
+        "eth": 0.01482176,
+        "usd": 41
+      },
+      "converted_volume": {
+        "btc": 37.420392,
+        "eth": 731.147,
+        "usd": 2022501
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.137033,
+      "timestamp": "2021-04-30T05:48:38+00:00",
+      "last_traded_at": "2021-04-30T05:48:38+00:00",
+      "last_fetch_at": "2021-04-30T05:48:38+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": null,
+      "token_info_url": null,
+      "coin_id": "uniswap"
+    },
+    {
+      "base": "0X1F9840A85D5AF5BF1D1762F925BDADDC4201F984",
+      "target": "ETH",
+      "market": {
+        "name": "Sushiswap",
+        "identifier": "sushiswap",
+        "has_trading_incentive": false
+      },
+      "last": 0.0146950018175136,
+      "volume": 72145.9266811386,
+      "converted_last": {
+        "btc": 0.00075136,
+        "eth": 0.01469042,
+        "usd": 40.61
+      },
+      "converted_volume": {
+        "btc": 54.207,
+        "eth": 1060,
+        "usd": 2929710
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.602726,
+      "timestamp": "2021-04-30T05:46:38+00:00",
+      "last_traded_at": "2021-04-30T05:46:38+00:00",
+      "last_fetch_at": "2021-04-30T05:46:38+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://app.sushi.com/swap?outputCurrency=0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+      "token_info_url": "https://analytics.sushi.com/tokens/0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+      "coin_id": "uniswap",
+      "target_coin_id": "ethereum"
+    },
+    {
+      "base": "UNI",
+      "target": "TRY",
+      "market": {
+        "name": "BtcTurk PRO",
+        "identifier": "btcturk",
+        "has_trading_incentive": false
+      },
+      "last": 334.88,
+      "volume": 112117.3,
+      "converted_last": {
+        "btc": 0.00075264,
+        "eth": 0.01470561,
+        "usd": 40.72
+      },
+      "converted_volume": {
+        "btc": 84.384,
+        "eth": 1649,
+        "usd": 4565510
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.086523,
+      "timestamp": "2021-04-30T05:49:27+00:00",
+      "last_traded_at": "2021-04-30T05:49:27+00:00",
+      "last_fetch_at": "2021-04-30T05:49:27+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://pro.btcturk.com/pro/al-sat/UNI_TRY",
+      "token_info_url": null,
+      "coin_id": "uniswap"
+    },
+    {
+      "base": "UNI",
+      "target": "USD",
+      "market": {
+        "name": "eToroX",
+        "identifier": "etorox",
+        "has_trading_incentive": false
+      },
+      "last": 40.76,
+      "volume": 47819,
+      "converted_last": {
+        "btc": 0.00075336,
+        "eth": 0.01471975,
+        "usd": 40.76
+      },
+      "converted_volume": {
+        "btc": 36.025072,
+        "eth": 703.884,
+        "usd": 1949102
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 1.213691,
+      "timestamp": "2021-04-30T05:49:09+00:00",
+      "last_traded_at": "2021-04-30T05:49:09+00:00",
+      "last_fetch_at": "2021-04-30T05:49:09+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://exchange.etorox.com/xchange#",
+      "token_info_url": null,
+      "coin_id": "uniswap"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "WhiteBIT",
+        "identifier": "whitebit",
+        "has_trading_incentive": false
+      },
+      "last": 40.9426,
+      "volume": 338648.6,
+      "converted_last": {
+        "btc": 0.00075728,
+        "eth": 0.01479632,
+        "usd": 40.93
+      },
+      "converted_volume": {
+        "btc": 256.452,
+        "eth": 5011,
+        "usd": 13860761
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.158382,
+      "timestamp": "2021-04-30T05:48:27+00:00",
+      "last_traded_at": "2021-04-30T05:48:27+00:00",
+      "last_fetch_at": "2021-04-30T05:48:27+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://whitebit.com/trade/UNI_USDT",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "BTC",
+      "market": {
+        "name": "OKEx",
+        "identifier": "okex",
+        "has_trading_incentive": false
+      },
+      "last": 0.000757,
+      "volume": 714204.25959,
+      "converted_last": {
+        "btc": 0.000757,
+        "eth": 0.01479081,
+        "usd": 40.91
+      },
+      "converted_volume": {
+        "btc": 540.653,
+        "eth": 10564,
+        "usd": 29221241
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.1585,
+      "timestamp": "2021-04-30T05:48:26+00:00",
+      "last_traded_at": "2021-04-30T05:48:26+00:00",
+      "last_fetch_at": "2021-04-30T05:48:26+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.okex.com/markets/spot-info/uni-btc",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "bitcoin"
+    },
+    {
+      "base": "UNISWAP",
+      "target": "USDT",
+      "market": {
+        "name": "BiKi",
+        "identifier": "biki",
+        "has_trading_incentive": false
+      },
+      "last": 40.8737,
+      "volume": 1093981.45104237,
+      "converted_last": {
+        "btc": 0.00075601,
+        "eth": 0.01478137,
+        "usd": 40.86
+      },
+      "converted_volume": {
+        "btc": 827.058,
+        "eth": 16171,
+        "usd": 44699564
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.052092,
+      "timestamp": "2021-04-30T05:47:06+00:00",
+      "last_traded_at": "2021-04-30T05:47:06+00:00",
+      "last_fetch_at": "2021-04-30T05:47:06+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.biki.com/trade/UNISWAP_USDT",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "BTC",
+      "market": {
+        "name": "Coinsbit",
+        "identifier": "coinsbit",
+        "has_trading_incentive": false
+      },
+      "last": 0.00075541,
+      "volume": 90622.49790774,
+      "converted_last": {
+        "btc": 0.00075541,
+        "eth": 0.01475975,
+        "usd": 40.83
+      },
+      "converted_volume": {
+        "btc": 68.457,
+        "eth": 1338,
+        "usd": 3699978
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.171919,
+      "timestamp": "2021-04-30T05:48:11+00:00",
+      "last_traded_at": "2021-04-30T05:48:11+00:00",
+      "last_fetch_at": "2021-04-30T05:48:11+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://coinsbit.io/trade/UNI_BTC",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "bitcoin"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "Crypto.com",
+        "identifier": "crypto_com",
+        "has_trading_incentive": false
+      },
+      "last": 40.9985,
+      "volume": 36586.0128,
+      "converted_last": {
+        "btc": 0.00075832,
+        "eth": 0.01481652,
+        "usd": 40.99
+      },
+      "converted_volume": {
+        "btc": 27.743744,
+        "eth": 542.077,
+        "usd": 1499496
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.119926,
+      "timestamp": "2021-04-30T05:48:18+00:00",
+      "last_traded_at": "2021-04-30T05:48:18+00:00",
+      "last_fetch_at": "2021-04-30T05:48:18+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://crypto.com/exchange/trade/spot/UNI_USDT",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "BNT",
+      "market": {
+        "name": "Bancor Network",
+        "identifier": "bancor",
+        "has_trading_incentive": false
+      },
+      "last": 5.97359646567585,
+      "volume": 37630.4782911745,
+      "converted_last": {
+        "btc": 0.00075058,
+        "eth": 0.01466542,
+        "usd": 40.61
+      },
+      "converted_volume": {
+        "btc": 28.244775,
+        "eth": 551.867,
+        "usd": 1528157
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.60272,
+      "timestamp": "2021-04-30T05:49:27+00:00",
+      "last_traded_at": "2021-04-30T05:49:27+00:00",
+      "last_fetch_at": "2021-04-30T05:49:27+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": null,
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "bancor"
+    },
+    {
+      "base": "UNI",
+      "target": "XBT",
+      "market": {
+        "name": "Kraken",
+        "identifier": "kraken",
+        "has_trading_incentive": false
+      },
+      "last": 0.0007538,
+      "volume": 16378.21093071,
+      "converted_last": {
+        "btc": 0.0007538,
+        "eth": 0.01472829,
+        "usd": 40.74
+      },
+      "converted_volume": {
+        "btc": 12.345895,
+        "eth": 241.223,
+        "usd": 667272
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.105778,
+      "timestamp": "2021-04-30T05:48:32+00:00",
+      "last_traded_at": "2021-04-30T05:48:32+00:00",
+      "last_fetch_at": "2021-04-30T05:48:32+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://trade.kraken.com/markets/kraken/uni/xbt",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "bitcoin"
+    },
+    {
+      "base": "UNI",
+      "target": "BNB",
+      "market": {
+        "name": "Binance",
+        "identifier": "binance",
+        "has_trading_incentive": false
+      },
+      "last": 0.06764,
+      "volume": 299558.7822146659,
+      "converted_last": {
+        "btc": 0.00076075,
+        "eth": 0.01486403,
+        "usd": 41.12
+      },
+      "converted_volume": {
+        "btc": 227.888,
+        "eth": 4453,
+        "usd": 12316936
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.104759,
+      "timestamp": "2021-04-30T05:48:15+00:00",
+      "last_traded_at": "2021-04-30T05:48:15+00:00",
+      "last_fetch_at": "2021-04-30T05:48:15+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.binance.com/en/trade/UNI_BNB?ref=37754157",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "binancecoin"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "Coinsbit",
+        "identifier": "coinsbit",
+        "has_trading_incentive": false
+      },
+      "last": 40.843,
+      "volume": 128932.53564219,
+      "converted_last": {
+        "btc": 0.00075544,
+        "eth": 0.01477027,
+        "usd": 40.83
+      },
+      "converted_volume": {
+        "btc": 97.401,
+        "eth": 1904,
+        "usd": 5264166
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.064456,
+      "timestamp": "2021-04-30T05:46:47+00:00",
+      "last_traded_at": "2021-04-30T05:46:47+00:00",
+      "last_fetch_at": "2021-04-30T05:46:47+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://coinsbit.io/trade/UNI_USDT",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "BTC",
+      "market": {
+        "name": "Binance US",
+        "identifier": "binance_us",
+        "has_trading_incentive": false
+      },
+      "last": 0.00075459,
+      "volume": 43695.92113598113,
+      "converted_last": {
+        "btc": 0.00075459,
+        "eth": 0.01474373,
+        "usd": 40.78
+      },
+      "converted_volume": {
+        "btc": 32.972505,
+        "eth": 644.241,
+        "usd": 1782101
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.173061,
+      "timestamp": "2021-04-30T05:48:27+00:00",
+      "last_traded_at": "2021-04-30T05:48:27+00:00",
+      "last_fetch_at": "2021-04-30T05:48:27+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.binance.us/en/trade/UNI_BTC",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "bitcoin"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "CoinTiger",
+        "identifier": "cointiger",
+        "has_trading_incentive": false
+      },
+      "last": 40.9308,
+      "volume": 11849.02,
+      "converted_last": {
+        "btc": 0.00075706,
+        "eth": 0.01478216,
+        "usd": 40.98
+      },
+      "converted_volume": {
+        "btc": 8.97046,
+        "eth": 175.154,
+        "usd": 485545
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.317868,
+      "timestamp": "2021-04-30T05:50:12+00:00",
+      "last_traded_at": "2021-04-30T05:50:12+00:00",
+      "last_fetch_at": "2021-04-30T05:50:12+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": null,
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "BTC",
+      "market": {
+        "name": "Huobi Global",
+        "identifier": "huobi",
+        "has_trading_incentive": false
+      },
+      "last": 0.00075464,
+      "volume": 78733.01662476861,
+      "converted_last": {
+        "btc": 0.00075464,
+        "eth": 0.01473484,
+        "usd": 40.85
+      },
+      "converted_volume": {
+        "btc": 59.415,
+        "eth": 1160,
+        "usd": 3215968
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.137441,
+      "timestamp": "2021-04-30T05:50:32+00:00",
+      "last_traded_at": "2021-04-30T05:50:32+00:00",
+      "last_fetch_at": "2021-04-30T05:50:32+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.hbg.com/en-us/exchange/?s=uni_btc",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "bitcoin"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "Huobi Indonesia",
+        "identifier": "huobi_id",
+        "has_trading_incentive": false
+      },
+      "last": 40.9204,
+      "volume": 616.3745,
+      "converted_last": {
+        "btc": 0.00075687,
+        "eth": 0.01478829,
+        "usd": 40.91
+      },
+      "converted_volume": {
+        "btc": 0.46651602,
+        "eth": 9.115128,
+        "usd": 25214
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.015377,
+      "timestamp": "2021-04-30T05:48:59+00:00",
+      "last_traded_at": "2021-04-30T05:48:59+00:00",
+      "last_fetch_at": "2021-04-30T05:48:59+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.huobi.com.co/exchange/#s=uni_usdt",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "USD",
+      "market": {
+        "name": "BTSE",
+        "identifier": "btse",
+        "has_trading_incentive": false
+      },
+      "last": 40.849,
+      "volume": 3247.7619545154103,
+      "converted_last": {
+        "btc": 0.00075581,
+        "eth": 0.01477757,
+        "usd": 40.85
+      },
+      "converted_volume": {
+        "btc": 2.454699,
+        "eth": 47.994017,
+        "usd": 132668
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.190672,
+      "timestamp": "2021-04-30T05:46:42+00:00",
+      "last_traded_at": "2021-04-30T05:46:42+00:00",
+      "last_fetch_at": "2021-04-30T05:46:42+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.btse.com/en/trading/UNI-USD",
+      "token_info_url": null,
+      "coin_id": "uniswap"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "BigONE",
+        "identifier": "bigone",
+        "has_trading_incentive": false
+      },
+      "last": 40.9516,
+      "volume": 7186.49,
+      "converted_last": {
+        "btc": 0.00075745,
+        "eth": 0.01479957,
+        "usd": 40.98
+      },
+      "converted_volume": {
+        "btc": 5.443393,
+        "eth": 106.357,
+        "usd": 294510
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.529121,
+      "timestamp": "2021-04-30T05:49:43+00:00",
+      "last_traded_at": "2021-04-30T05:49:43+00:00",
+      "last_fetch_at": "2021-04-30T05:49:43+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://big.one/trade/UNI-USDT",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "ETH",
+      "market": {
+        "name": "Huobi Global",
+        "identifier": "huobi",
+        "has_trading_incentive": false
+      },
+      "last": 0.014795,
+      "volume": 30395.845400556922,
+      "converted_last": {
+        "btc": 0.00075647,
+        "eth": 0.01478043,
+        "usd": 40.89
+      },
+      "converted_volume": {
+        "btc": 22.993495,
+        "eth": 449.264,
+        "usd": 1242754
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.074349,
+      "timestamp": "2021-04-30T05:48:20+00:00",
+      "last_traded_at": "2021-04-30T05:48:20+00:00",
+      "last_fetch_at": "2021-04-30T05:48:20+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.hbg.com/en-us/exchange/?s=uni_eth",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "ethereum"
+    },
+    {
+      "base": "UNI",
+      "target": "USD",
+      "market": {
+        "name": "FTX",
+        "identifier": "ftx_spot",
+        "has_trading_incentive": false
+      },
+      "last": 41.02,
+      "volume": 52895.00979278401,
+      "converted_last": {
+        "btc": 0.00075785,
+        "eth": 0.01479743,
+        "usd": 41.02
+      },
+      "converted_volume": {
+        "btc": 40.086244,
+        "eth": 782.71,
+        "usd": 2169753
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.233901,
+      "timestamp": "2021-04-30T05:50:20+00:00",
+      "last_traded_at": "2021-04-30T05:50:20+00:00",
+      "last_fetch_at": "2021-04-30T05:50:20+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://ftx.com/trade/UNI/USD",
+      "token_info_url": null,
+      "coin_id": "uniswap"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "KuCoin",
+        "identifier": "kucoin",
+        "has_trading_incentive": false
+      },
+      "last": 40.9382,
+      "volume": 120848.79520489,
+      "converted_last": {
+        "btc": 0.0007572,
+        "eth": 0.01479473,
+        "usd": 40.93
+      },
+      "converted_volume": {
+        "btc": 91.507,
+        "eth": 1788,
+        "usd": 4945765
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.010733,
+      "timestamp": "2021-04-30T05:48:32+00:00",
+      "last_traded_at": "2021-04-30T05:48:32+00:00",
+      "last_fetch_at": "2021-04-30T05:48:32+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.kucoin.com/trade/UNI-USDT",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "USD",
+      "market": {
+        "name": "Bittrex",
+        "identifier": "bittrex",
+        "has_trading_incentive": false
+      },
+      "last": 40.841,
+      "volume": 9873.83419083,
+      "converted_last": {
+        "btc": 0.00075566,
+        "eth": 0.01477467,
+        "usd": 40.84
+      },
+      "converted_volume": {
+        "btc": 7.461306,
+        "eth": 145.883,
+        "usd": 403257
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.087981,
+      "timestamp": "2021-04-30T05:46:58+00:00",
+      "last_traded_at": "2021-04-30T05:46:58+00:00",
+      "last_fetch_at": "2021-04-30T05:46:58+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://bittrex.com/Market/Index?MarketName=USD-UNI",
+      "token_info_url": null,
+      "coin_id": "uniswap"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "Binance US",
+        "identifier": "binance_us",
+        "has_trading_incentive": false
+      },
+      "last": 40.8943,
+      "volume": 67993.8709146507,
+      "converted_last": {
+        "btc": 0.00075639,
+        "eth": 0.01477886,
+        "usd": 40.88
+      },
+      "converted_volume": {
+        "btc": 51.43,
+        "eth": 1005,
+        "usd": 2779681
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.210976,
+      "timestamp": "2021-04-30T05:48:27+00:00",
+      "last_traded_at": "2021-04-30T05:48:27+00:00",
+      "last_fetch_at": "2021-04-30T05:48:27+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.binance.us/en/trade/UNI_USDT",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "Emirex",
+        "identifier": "emirex",
+        "has_trading_incentive": false
+      },
+      "last": 40.3992,
+      "volume": 38782.1,
+      "converted_last": {
+        "btc": 0.00075285,
+        "eth": 0.01473262,
+        "usd": 40.42
+      },
+      "converted_volume": {
+        "btc": 29.196933,
+        "eth": 571.362,
+        "usd": 1567426
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.424139,
+      "timestamp": "2021-04-30T03:43:20+00:00",
+      "last_traded_at": "2021-04-30T03:43:20+00:00",
+      "last_fetch_at": "2021-04-30T03:43:20+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://emirex.com/trading/UNIUSDT",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "EUR",
+      "market": {
+        "name": "Binance",
+        "identifier": "binance",
+        "has_trading_incentive": false
+      },
+      "last": 33.8,
+      "volume": 36695.682495384615,
+      "converted_last": {
+        "btc": 0.00075787,
+        "eth": 0.014822,
+        "usd": 40.96
+      },
+      "converted_volume": {
+        "btc": 27.810563,
+        "eth": 543.903,
+        "usd": 1502886
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.20518,
+      "timestamp": "2021-04-30T05:45:21+00:00",
+      "last_traded_at": "2021-04-30T05:45:21+00:00",
+      "last_fetch_at": "2021-04-30T05:45:21+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.binance.com/en/trade/UNI_EUR?ref=37754157",
+      "token_info_url": null,
+      "coin_id": "uniswap"
+    },
+    {
+      "base": "UNI",
+      "target": "USD",
+      "market": {
+        "name": "HitBTC",
+        "identifier": "hitbtc",
+        "has_trading_incentive": false
+      },
+      "last": 40.87085,
+      "volume": 4207.7,
+      "converted_last": {
+        "btc": 0.00075509,
+        "eth": 0.01474362,
+        "usd": 40.87
+      },
+      "converted_volume": {
+        "btc": 3.177192,
+        "eth": 62.037,
+        "usd": 171972
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.04747,
+      "timestamp": "2021-04-30T05:50:02+00:00",
+      "last_traded_at": "2021-04-30T05:50:02+00:00",
+      "last_fetch_at": "2021-04-30T05:50:02+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://hitbtc.com/UNI-to-USD",
+      "token_info_url": null,
+      "coin_id": "uniswap"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "Bittrex",
+        "identifier": "bittrex",
+        "has_trading_incentive": false
+      },
+      "last": 40.773,
+      "volume": 11706.85562694,
+      "converted_last": {
+        "btc": 0.00075414,
+        "eth": 0.01474496,
+        "usd": 40.76
+      },
+      "converted_volume": {
+        "btc": 8.828663,
+        "eth": 172.617,
+        "usd": 477158
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.19323,
+      "timestamp": "2021-04-30T05:47:02+00:00",
+      "last_traded_at": "2021-04-30T05:47:02+00:00",
+      "last_fetch_at": "2021-04-30T05:47:02+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://bittrex.com/Market/Index?MarketName=USDT-UNI",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "BitZ",
+        "identifier": "bit_z",
+        "has_trading_incentive": false
+      },
+      "last": 40.8585,
+      "volume": 653618.37,
+      "converted_last": {
+        "btc": 0.00075573,
+        "eth": 0.01477588,
+        "usd": 40.84
+      },
+      "converted_volume": {
+        "btc": 493.956,
+        "eth": 9658,
+        "usd": 26696606
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.58864,
+      "timestamp": "2021-04-30T05:46:51+00:00",
+      "last_traded_at": "2021-04-30T05:46:51+00:00",
+      "last_fetch_at": "2021-04-30T05:46:51+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.bit-z.com/exchange/uni_usdt",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "BtcTurk PRO",
+        "identifier": "btcturk",
+        "has_trading_incentive": false
+      },
+      "last": 40.961,
+      "volume": 21797.59,
+      "converted_last": {
+        "btc": 0.00075762,
+        "eth": 0.01480297,
+        "usd": 40.99
+      },
+      "converted_volume": {
+        "btc": 16.514334,
+        "eth": 322.669,
+        "usd": 893492
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.24426,
+      "timestamp": "2021-04-30T05:49:27+00:00",
+      "last_traded_at": "2021-04-30T05:49:27+00:00",
+      "last_fetch_at": "2021-04-30T05:49:27+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://pro.btcturk.com/pro/al-sat/UNI_USDT",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "AscendEX (BitMax)",
+        "identifier": "bitmax",
+        "has_trading_incentive": false
+      },
+      "last": 40.843,
+      "volume": 7297.2,
+      "converted_last": {
+        "btc": 0.00075544,
+        "eth": 0.01476032,
+        "usd": 40.83
+      },
+      "converted_volume": {
+        "btc": 5.512593,
+        "eth": 107.709,
+        "usd": 297945
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.273364,
+      "timestamp": "2021-04-30T05:48:39+00:00",
+      "last_traded_at": "2021-04-30T05:48:39+00:00",
+      "last_fetch_at": "2021-04-30T05:48:39+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://bitmax.io/en-us/basic/cashtrade-spottrading/usdt/uni",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "0X22C54CE8321A4015740EE1109D9CBC25815C46E6",
+      "target": "HT",
+      "market": {
+        "name": "Mdex",
+        "identifier": "mdex",
+        "has_trading_incentive": true
+      },
+      "last": 1.73316363352944,
+      "volume": 211453.483729325,
+      "converted_last": {
+        "btc": 0.0007454,
+        "eth": 0.01457396,
+        "usd": 40.29
+      },
+      "converted_volume": {
+        "btc": 157.617,
+        "eth": 3082,
+        "usd": 8518655
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.602802,
+      "timestamp": "2021-04-30T05:47:04+00:00",
+      "last_traded_at": "2021-04-30T05:47:04+00:00",
+      "last_fetch_at": "2021-04-30T05:47:04+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://ht.mdex.com/#/swap/0x22c54ce8321a4015740ee1109d9cbc25815c46e6",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "huobi-token"
+    },
+    {
+      "base": "UNI",
+      "target": "ETH",
+      "market": {
+        "name": "Bittrex",
+        "identifier": "bittrex",
+        "has_trading_incentive": false
+      },
+      "last": 0.01475618,
+      "volume": 18917.62750046,
+      "converted_last": {
+        "btc": 0.00075448,
+        "eth": 0.01475158,
+        "usd": 40.78
+      },
+      "converted_volume": {
+        "btc": 14.273037,
+        "eth": 279.065,
+        "usd": 771407
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.190449,
+      "timestamp": "2021-04-30T05:47:01+00:00",
+      "last_traded_at": "2021-04-30T05:47:01+00:00",
+      "last_fetch_at": "2021-04-30T05:47:01+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://bittrex.com/Market/Index?MarketName=ETH-UNI",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "ethereum"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "BitMart",
+        "identifier": "bitmart",
+        "has_trading_incentive": false
+      },
+      "last": 40.634,
+      "volume": 59978.88,
+      "converted_last": {
+        "btc": 0.00075157,
+        "eth": 0.01469886,
+        "usd": 40.62
+      },
+      "converted_volume": {
+        "btc": 45.078552,
+        "eth": 881.621,
+        "usd": 2436051
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.260782,
+      "timestamp": "2021-04-30T05:45:54+00:00",
+      "last_traded_at": "2021-04-30T05:45:54+00:00",
+      "last_fetch_at": "2021-04-30T05:48:42+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.bitmart.com/trade/en?symbol=UNI_USDT",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "MXC",
+        "identifier": "mxc",
+        "has_trading_incentive": false
+      },
+      "last": 40.8084,
+      "volume": 18463.88,
+      "converted_last": {
+        "btc": 0.0007548,
+        "eth": 0.01476194,
+        "usd": 40.79
+      },
+      "converted_volume": {
+        "btc": 13.936527,
+        "eth": 272.563,
+        "usd": 753132
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.170251,
+      "timestamp": "2021-04-30T05:45:47+00:00",
+      "last_traded_at": "2021-04-30T05:45:47+00:00",
+      "last_fetch_at": "2021-04-30T05:45:47+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.mxc.com/trade/easy#UNI_USDT",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "ETH",
+      "market": {
+        "name": "Kraken",
+        "identifier": "kraken",
+        "has_trading_incentive": false
+      },
+      "last": 0.01481,
+      "volume": 12029.98949385,
+      "converted_last": {
+        "btc": 0.00075724,
+        "eth": 0.01479541,
+        "usd": 40.93
+      },
+      "converted_volume": {
+        "btc": 9.109533,
+        "eth": 177.989,
+        "usd": 492353
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.20284,
+      "timestamp": "2021-04-30T05:48:31+00:00",
+      "last_traded_at": "2021-04-30T05:48:31+00:00",
+      "last_fetch_at": "2021-04-30T05:48:31+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://trade.kraken.com/markets/kraken/uni/eth",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "ethereum"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "BW.com",
+        "identifier": "bw",
+        "has_trading_incentive": false
+      },
+      "last": 40.9227,
+      "volume": 583914.2,
+      "converted_last": {
+        "btc": 0.00075691,
+        "eth": 0.01478913,
+        "usd": 40.95
+      },
+      "converted_volume": {
+        "btc": 441.973,
+        "eth": 8636,
+        "usd": 23912509
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.712672,
+      "timestamp": "2021-04-30T05:49:15+00:00",
+      "last_traded_at": "2021-04-30T05:49:15+00:00",
+      "last_fetch_at": "2021-04-30T05:49:15+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.bw.com/trade/uni_usdt",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "ETH",
+      "market": {
+        "name": "MXC",
+        "identifier": "mxc",
+        "has_trading_incentive": false
+      },
+      "last": 0.014764,
+      "volume": 7411.16,
+      "converted_last": {
+        "btc": 0.00075488,
+        "eth": 0.01474946,
+        "usd": 40.8
+      },
+      "converted_volume": {
+        "btc": 5.594561,
+        "eth": 109.311,
+        "usd": 302375
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.297097,
+      "timestamp": "2021-04-30T05:48:24+00:00",
+      "last_traded_at": "2021-04-30T05:48:24+00:00",
+      "last_fetch_at": "2021-04-30T05:48:24+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.mxc.com/trade/easy#UNI_ETH",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "ethereum"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "Hoo.com",
+        "identifier": "hoo",
+        "has_trading_incentive": false
+      },
+      "last": 40.6515,
+      "volume": 61075.629313653866,
+      "converted_last": {
+        "btc": 0.0007519,
+        "eth": 0.01467632,
+        "usd": 40.66
+      },
+      "converted_volume": {
+        "btc": 45.922609,
+        "eth": 896.366,
+        "usd": 2483495
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.012951,
+      "timestamp": "2021-04-30T05:36:46+00:00",
+      "last_traded_at": "2021-04-30T05:36:46+00:00",
+      "last_fetch_at": "2021-04-30T05:36:46+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://hoo.com/spot/uni-usdt",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "ETH",
+      "market": {
+        "name": "OKEx",
+        "identifier": "okex",
+        "has_trading_incentive": false
+      },
+      "last": 0.014763,
+      "volume": 22089.08557,
+      "converted_last": {
+        "btc": 0.00075483,
+        "eth": 0.01474846,
+        "usd": 40.8
+      },
+      "converted_volume": {
+        "btc": 16.673553,
+        "eth": 325.78,
+        "usd": 901174
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.330902,
+      "timestamp": "2021-04-30T05:48:25+00:00",
+      "last_traded_at": "2021-04-30T05:48:25+00:00",
+      "last_fetch_at": "2021-04-30T05:48:25+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.okex.com/markets/spot-info/uni-eth",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "ethereum"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "Deversifi ",
+        "identifier": "deversifi",
+        "has_trading_incentive": false
+      },
+      "last": 40.559,
+      "volume": 151.12419,
+      "converted_last": {
+        "btc": 0.00075027,
+        "eth": 0.01469798,
+        "usd": 40.58
+      },
+      "converted_volume": {
+        "btc": 0.11338339,
+        "eth": 2.22122,
+        "usd": 6132.06
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.10575,
+      "timestamp": "2021-04-30T05:27:27+00:00",
+      "last_traded_at": "2021-04-30T05:27:27+00:00",
+      "last_fetch_at": "2021-04-30T05:30:11+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://app.deversifi.com",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "Virgox",
+        "identifier": "virgox",
+        "has_trading_incentive": false
+      },
+      "last": 40.5847,
+      "volume": 78616.56,
+      "converted_last": {
+        "btc": 0.0007533,
+        "eth": 0.01473504,
+        "usd": 40.67
+      },
+      "converted_volume": {
+        "btc": 59.222,
+        "eth": 1158,
+        "usd": 3197191
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.231879,
+      "timestamp": "2021-04-30T04:26:55+00:00",
+      "last_traded_at": "2021-04-30T04:26:55+00:00",
+      "last_fetch_at": "2021-04-30T04:26:55+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://virgox.com/exchange",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "Bilaxy",
+        "identifier": "bilaxy",
+        "has_trading_incentive": false
+      },
+      "last": 40.8015,
+      "volume": 42818.85,
+      "converted_last": {
+        "btc": 0.00075467,
+        "eth": 0.01475526,
+        "usd": 40.79
+      },
+      "converted_volume": {
+        "btc": 32.314181,
+        "eth": 631.803,
+        "usd": 1746468
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.166357,
+      "timestamp": "2021-04-30T05:46:16+00:00",
+      "last_traded_at": "2021-04-30T05:46:16+00:00",
+      "last_fetch_at": "2021-04-30T05:46:16+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://bilaxy.com/trade/UNI_USDT",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "CRO",
+      "market": {
+        "name": "Crypto.com",
+        "identifier": "crypto_com",
+        "has_trading_incentive": false
+      },
+      "last": 217.964,
+      "volume": 86.2,
+      "converted_last": {
+        "btc": 0.00075707,
+        "eth": 0.01479228,
+        "usd": 40.92
+      },
+      "converted_volume": {
+        "btc": 0.06525986,
+        "eth": 1.275094,
+        "usd": 3527.17
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.466313,
+      "timestamp": "2021-04-30T05:48:18+00:00",
+      "last_traded_at": "2021-04-30T05:48:18+00:00",
+      "last_fetch_at": "2021-04-30T05:48:18+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://crypto.com/exchange/trade/spot/UNI_CRO",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "crypto-com-chain"
+    },
+    {
+      "base": "UNI",
+      "target": "BTC",
+      "market": {
+        "name": "Bittrex",
+        "identifier": "bittrex",
+        "has_trading_incentive": false
+      },
+      "last": 0.00075501,
+      "volume": 11032.65669463,
+      "converted_last": {
+        "btc": 0.00075501,
+        "eth": 0.01476188,
+        "usd": 40.81
+      },
+      "converted_volume": {
+        "btc": 8.329766,
+        "eth": 162.863,
+        "usd": 450194
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.108553,
+      "timestamp": "2021-04-30T05:46:59+00:00",
+      "last_traded_at": "2021-04-30T05:46:59+00:00",
+      "last_fetch_at": "2021-04-30T05:46:59+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://bittrex.com/Market/Index?MarketName=BTC-UNI",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "bitcoin"
+    },
+    {
+      "base": "UNI",
+      "target": "BTC",
+      "market": {
+        "name": "Upbit",
+        "identifier": "upbit",
+        "has_trading_incentive": false
+      },
+      "last": 0.00075582,
+      "volume": 46574.74006484,
+      "converted_last": {
+        "btc": 0.00075582,
+        "eth": 0.01475788,
+        "usd": 40.91
+      },
+      "converted_volume": {
+        "btc": 35.20212,
+        "eth": 687.344,
+        "usd": 1905390
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.010585,
+      "timestamp": "2021-04-30T05:50:07+00:00",
+      "last_traded_at": "2021-04-30T05:50:07+00:00",
+      "last_fetch_at": "2021-04-30T05:50:07+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://upbit.com/exchange?code=CRIX.UPBIT.BTC-UNI",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "bitcoin"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "FTX",
+        "identifier": "ftx_spot",
+        "has_trading_incentive": false
+      },
+      "last": 40.957,
+      "volume": 15428.581641721807,
+      "converted_last": {
+        "btc": 0.00075755,
+        "eth": 0.01479162,
+        "usd": 41
+      },
+      "converted_volume": {
+        "btc": 11.687891,
+        "eth": 228.214,
+        "usd": 632632
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.273257,
+      "timestamp": "2021-04-30T05:50:23+00:00",
+      "last_traded_at": "2021-04-30T05:50:23+00:00",
+      "last_fetch_at": "2021-04-30T05:50:23+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://ftx.com/trade/UNI/USDT",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "USD",
+      "market": {
+        "name": "CEX.IO",
+        "identifier": "cex",
+        "has_trading_incentive": false
+      },
+      "last": 40.8111,
+      "volume": 12726.529162,
+      "converted_last": {
+        "btc": 0.00075399,
+        "eth": 0.01472207,
+        "usd": 40.81
+      },
+      "converted_volume": {
+        "btc": 9.595625,
+        "eth": 187.361,
+        "usd": 519384
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.020089,
+      "timestamp": "2021-04-30T05:50:15+00:00",
+      "last_traded_at": "2021-04-30T05:50:15+00:00",
+      "last_fetch_at": "2021-04-30T05:50:15+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": null,
+      "token_info_url": null,
+      "coin_id": "uniswap"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "XT",
+        "identifier": "xt",
+        "has_trading_incentive": false
+      },
+      "last": 40.937,
+      "volume": 149070.62,
+      "converted_last": {
+        "btc": 0.00075718,
+        "eth": 0.01479429,
+        "usd": 40.97
+      },
+      "converted_volume": {
+        "btc": 112.873,
+        "eth": 2205,
+        "usd": 6106887
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.030573,
+      "timestamp": "2021-04-30T05:49:16+00:00",
+      "last_traded_at": "2021-04-30T05:49:16+00:00",
+      "last_fetch_at": "2021-04-30T05:49:16+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.xt.com/trade/uni_usdt",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "ETH",
+      "market": {
+        "name": "Gate.io",
+        "identifier": "gate",
+        "has_trading_incentive": false
+      },
+      "last": 0.014777,
+      "volume": 3198.4526618221,
+      "converted_last": {
+        "btc": 0.00075555,
+        "eth": 0.01477239,
+        "usd": 40.83
+      },
+      "converted_volume": {
+        "btc": 2.416585,
+        "eth": 47.248805,
+        "usd": 130608
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.329732,
+      "timestamp": "2021-04-30T05:47:29+00:00",
+      "last_traded_at": "2021-04-30T05:47:29+00:00",
+      "last_fetch_at": "2021-04-30T05:47:29+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://gate.io/trade/UNI_ETH",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "ethereum"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "Bibox",
+        "identifier": "bibox",
+        "has_trading_incentive": false
+      },
+      "last": 40.8204,
+      "volume": 102001,
+      "converted_last": {
+        "btc": 0.00075502,
+        "eth": 0.0147621,
+        "usd": 40.81
+      },
+      "converted_volume": {
+        "btc": 77.013,
+        "eth": 1506,
+        "usd": 4162278
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.018082,
+      "timestamp": "2021-04-30T05:47:43+00:00",
+      "last_traded_at": "2021-04-30T05:47:43+00:00",
+      "last_fetch_at": "2021-04-30T05:47:43+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.bibox.com/en/exchange/basic/UNI_USDT",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "BTC",
+      "market": {
+        "name": "Emirex",
+        "identifier": "emirex",
+        "has_trading_incentive": false
+      },
+      "last": 0.00075346,
+      "volume": 5683,
+      "converted_last": {
+        "btc": 0.00075346,
+        "eth": 0.01472534,
+        "usd": 40.76
+      },
+      "converted_volume": {
+        "btc": 4.281913,
+        "eth": 83.684,
+        "usd": 231636
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.344722,
+      "timestamp": "2021-04-30T05:08:47+00:00",
+      "last_traded_at": "2021-04-30T05:08:47+00:00",
+      "last_fetch_at": "2021-04-30T05:08:47+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://emirex.com/trading/UNIBTC",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "bitcoin"
+    },
+    {
+      "base": "UNI",
+      "target": "BTC",
+      "market": {
+        "name": "Atomars",
+        "identifier": "atomars",
+        "has_trading_incentive": false
+      },
+      "last": 0.00075482,
+      "volume": 1794,
+      "converted_last": {
+        "btc": 0.00075482,
+        "eth": 0.01475816,
+        "usd": 40.8
+      },
+      "converted_volume": {
+        "btc": 1.354147,
+        "eth": 26.47614,
+        "usd": 73187
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.741268,
+      "timestamp": "2021-04-30T05:47:08+00:00",
+      "last_traded_at": "2021-04-30T05:47:08+00:00",
+      "last_fetch_at": "2021-04-30T05:47:08+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": null,
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "bitcoin"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "ZB",
+        "identifier": "zb",
+        "has_trading_incentive": false
+      },
+      "last": 40.9666,
+      "volume": 20054.7022,
+      "converted_last": {
+        "btc": 0.00075773,
+        "eth": 0.01480499,
+        "usd": 40.95
+      },
+      "converted_volume": {
+        "btc": 15.195961,
+        "eth": 296.91,
+        "usd": 821313
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.087876,
+      "timestamp": "2021-04-30T05:48:23+00:00",
+      "last_traded_at": "2021-04-30T05:48:23+00:00",
+      "last_fetch_at": "2021-04-30T05:48:23+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://trans.zb.com/uniusdt",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "Currency.com",
+        "identifier": "currency",
+        "has_trading_incentive": false
+      },
+      "last": 40.66347,
+      "volume": 0.8,
+      "converted_last": {
+        "btc": 0.00075212,
+        "eth": 0.01469544,
+        "usd": 40.65
+      },
+      "converted_volume": {
+        "btc": 0.0006017,
+        "eth": 0.01175635,
+        "usd": 32.52
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.860156,
+      "timestamp": "2021-04-30T05:48:45+00:00",
+      "last_traded_at": "2021-04-30T05:48:45+00:00",
+      "last_fetch_at": "2021-04-30T05:48:45+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://exchange.currency.com/uni-to-usdt",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "LATOKEN",
+        "identifier": "latoken",
+        "has_trading_incentive": false
+      },
+      "last": 40.7905,
+      "volume": 119433.58485480688,
+      "converted_last": {
+        "btc": 0.00075447,
+        "eth": 0.01475129,
+        "usd": 40.78
+      },
+      "converted_volume": {
+        "btc": 90.109,
+        "eth": 1762,
+        "usd": 4870066
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.012448,
+      "timestamp": "2021-04-30T05:46:35+00:00",
+      "last_traded_at": "2021-04-30T05:46:35+00:00",
+      "last_fetch_at": "2021-04-30T05:46:35+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://latoken.com/exchange/USDT-UNI",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "BKEX",
+        "identifier": "bkex",
+        "has_trading_incentive": false
+      },
+      "last": 40.6036,
+      "volume": 39404.9367,
+      "converted_last": {
+        "btc": 0.00075101,
+        "eth": 0.01466449,
+        "usd": 40.58
+      },
+      "converted_volume": {
+        "btc": 29.593559,
+        "eth": 577.853,
+        "usd": 1598947
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.099986,
+      "timestamp": "2021-04-30T05:40:52+00:00",
+      "last_traded_at": "2021-04-30T05:40:52+00:00",
+      "last_fetch_at": "2021-04-30T05:40:52+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.bkex.com/#/trade/UNI_USDT",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "USDC",
+      "market": {
+        "name": "Serum DEX",
+        "identifier": "serum_dex",
+        "has_trading_incentive": false
+      },
+      "last": 40.6402,
+      "volume": 89.8,
+      "converted_last": {
+        "btc": 0.000751,
+        "eth": 0.01465879,
+        "usd": 40.61
+      },
+      "converted_volume": {
+        "btc": 0.06743975,
+        "eth": 1.31636,
+        "usd": 3646.88
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.299048,
+      "timestamp": "2021-04-30T05:37:01+00:00",
+      "last_traded_at": "2021-04-30T05:37:01+00:00",
+      "last_fetch_at": "2021-04-30T05:49:26+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://dex.projectserum.com",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "usd-coin"
+    },
+    {
+      "base": "UNI",
+      "target": "BTC",
+      "market": {
+        "name": "LATOKEN",
+        "identifier": "latoken",
+        "has_trading_incentive": false
+      },
+      "last": 0.00075588,
+      "volume": 29961.293194686987,
+      "converted_last": {
+        "btc": 0.00075588,
+        "eth": 0.01476893,
+        "usd": 40.9
+      },
+      "converted_volume": {
+        "btc": 22.647142,
+        "eth": 442.496,
+        "usd": 1225302
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.055538,
+      "timestamp": "2021-04-30T05:49:49+00:00",
+      "last_traded_at": "2021-04-30T05:49:49+00:00",
+      "last_fetch_at": "2021-04-30T05:49:49+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://latoken.com/exchange/BTC-UNI",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "bitcoin"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "Atomars",
+        "identifier": "atomars",
+        "has_trading_incentive": false
+      },
+      "last": 40.8041,
+      "volume": 7208.3694,
+      "converted_last": {
+        "btc": 0.00075472,
+        "eth": 0.01476039,
+        "usd": 40.79
+      },
+      "converted_volume": {
+        "btc": 5.4403,
+        "eth": 106.398,
+        "usd": 293995
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.756632,
+      "timestamp": "2021-04-30T05:45:27+00:00",
+      "last_traded_at": "2021-04-30T05:45:27+00:00",
+      "last_fetch_at": "2021-04-30T05:45:27+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": null,
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "CoinEx",
+        "identifier": "coinex",
+        "has_trading_incentive": false
+      },
+      "last": 40.953,
+      "volume": 6684.59478873,
+      "converted_last": {
+        "btc": 0.00075747,
+        "eth": 0.01480008,
+        "usd": 40.94
+      },
+      "converted_volume": {
+        "btc": 5.063407,
+        "eth": 98.933,
+        "usd": 273667
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.182818,
+      "timestamp": "2021-04-30T05:48:55+00:00",
+      "last_traded_at": "2021-04-30T05:48:55+00:00",
+      "last_fetch_at": "2021-04-30T05:48:55+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.coinex.com/trading?currency=USDT&dest=UNI#limit",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "EUR",
+      "market": {
+        "name": "Bittrex",
+        "identifier": "bittrex",
+        "has_trading_incentive": false
+      },
+      "last": 33.724,
+      "volume": 605.17700919,
+      "converted_last": {
+        "btc": 0.00075611,
+        "eth": 0.01478337,
+        "usd": 40.87
+      },
+      "converted_volume": {
+        "btc": 0.45758,
+        "eth": 8.946556,
+        "usd": 24731
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.316222,
+      "timestamp": "2021-04-30T05:47:00+00:00",
+      "last_traded_at": "2021-04-30T05:47:00+00:00",
+      "last_fetch_at": "2021-04-30T05:47:00+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://bittrex.com/Market/Index?MarketName=EUR-UNI",
+      "token_info_url": null,
+      "coin_id": "uniswap"
+    },
+    {
+      "base": "UNI",
+      "target": "TRY",
+      "market": {
+        "name": "Paribu",
+        "identifier": "paribu",
+        "has_trading_incentive": false
+      },
+      "last": 337.9,
+      "volume": 34074.72610702,
+      "converted_last": {
+        "btc": 0.00076024,
+        "eth": 0.01486405,
+        "usd": 41.09
+      },
+      "converted_volume": {
+        "btc": 25.904826,
+        "eth": 506.488,
+        "usd": 1400064
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.266351,
+      "timestamp": "2021-04-30T05:48:00+00:00",
+      "last_traded_at": "2021-04-30T05:48:00+00:00",
+      "last_fetch_at": "2021-04-30T05:48:00+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": null,
+      "token_info_url": null,
+      "coin_id": "uniswap"
+    },
+    {
+      "base": "UNI",
+      "target": "BTC",
+      "market": {
+        "name": "GokuMarket",
+        "identifier": "goku",
+        "has_trading_incentive": false
+      },
+      "last": 0.0007547,
+      "volume": 113521.10536466431,
+      "converted_last": {
+        "btc": 0.0007547,
+        "eth": 0.01473601,
+        "usd": 40.85
+      },
+      "converted_volume": {
+        "btc": 85.674,
+        "eth": 1673,
+        "usd": 4637308
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.01265,
+      "timestamp": "2021-04-30T05:50:05+00:00",
+      "last_traded_at": "2021-04-30T05:50:05+00:00",
+      "last_fetch_at": "2021-04-30T05:50:05+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.gokumarket.com/exchange/UNI_BTC",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "bitcoin"
+    },
+    {
+      "base": "UNI",
+      "target": "USD",
+      "market": {
+        "name": "Okcoin",
+        "identifier": "okcoin",
+        "has_trading_incentive": false
+      },
+      "last": 40.835,
+      "volume": 726.0757,
+      "converted_last": {
+        "btc": 0.00075564,
+        "eth": 0.01477842,
+        "usd": 40.84
+      },
+      "converted_volume": {
+        "btc": 0.54865344,
+        "eth": 10.730255,
+        "usd": 29649
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.463867,
+      "timestamp": "2021-04-30T05:45:56+00:00",
+      "last_traded_at": "2021-04-30T05:45:56+00:00",
+      "last_fetch_at": "2021-04-30T05:45:56+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.okcoin.com/market#product=uni_usd",
+      "token_info_url": null,
+      "coin_id": "uniswap"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "DragonEx",
+        "identifier": "dragonex",
+        "has_trading_incentive": false
+      },
+      "last": 40.932,
+      "volume": 381512.58,
+      "converted_last": {
+        "btc": 0.00075709,
+        "eth": 0.01479249,
+        "usd": 40.92
+      },
+      "converted_volume": {
+        "btc": 288.838,
+        "eth": 5644,
+        "usd": 15611125
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 1.998113,
+      "timestamp": "2021-04-30T05:48:30+00:00",
+      "last_traded_at": "2021-04-30T05:48:30+00:00",
+      "last_fetch_at": "2021-04-30T05:48:30+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://dragonex.io/en-us/trade/index/uni_usdt",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "USD",
+      "market": {
+        "name": "Currency.com",
+        "identifier": "currency",
+        "has_trading_incentive": false
+      },
+      "last": 40.59181,
+      "volume": 1825.742684,
+      "converted_last": {
+        "btc": 0.00075103,
+        "eth": 0.01467419,
+        "usd": 40.59
+      },
+      "converted_volume": {
+        "btc": 1.37119,
+        "eth": 26.791304,
+        "usd": 74110
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.702923,
+      "timestamp": "2021-04-30T05:48:45+00:00",
+      "last_traded_at": "2021-04-30T05:48:45+00:00",
+      "last_fetch_at": "2021-04-30T05:48:45+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://exchange.currency.com/uni-to-usd",
+      "token_info_url": null,
+      "coin_id": "uniswap"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "Poloniex",
+        "identifier": "poloniex",
+        "has_trading_incentive": false
+      },
+      "last": 40.99996935,
+      "volume": 2574.90426622,
+      "converted_last": {
+        "btc": 0.00075834,
+        "eth": 0.01480714,
+        "usd": 41.05
+      },
+      "converted_volume": {
+        "btc": 1.95266,
+        "eth": 38.126962,
+        "usd": 105692
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.245818,
+      "timestamp": "2021-04-30T05:50:36+00:00",
+      "last_traded_at": "2021-04-30T05:50:36+00:00",
+      "last_fetch_at": "2021-04-30T05:50:36+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://poloniex.com/exchange#uni_usdt",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "BTC",
+      "market": {
+        "name": "KickEX",
+        "identifier": "kickex",
+        "has_trading_incentive": false
+      },
+      "last": 0.00076133,
+      "volume": 48510.7005,
+      "converted_last": {
+        "btc": 0.00076133,
+        "eth": 0.01486546,
+        "usd": 41.21
+      },
+      "converted_volume": {
+        "btc": 36.932652,
+        "eth": 721.134,
+        "usd": 1999058
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.483903,
+      "timestamp": "2021-04-30T05:50:31+00:00",
+      "last_traded_at": "2021-04-30T05:50:31+00:00",
+      "last_fetch_at": "2021-04-30T05:50:31+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://kickex.com/en/trade/UNI-BTC",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "bitcoin"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "KickEX",
+        "identifier": "kickex",
+        "has_trading_incentive": false
+      },
+      "last": 40.8732,
+      "volume": 50365.43,
+      "converted_last": {
+        "btc": 0.000756,
+        "eth": 0.01476135,
+        "usd": 40.92
+      },
+      "converted_volume": {
+        "btc": 38.076166,
+        "eth": 743.462,
+        "usd": 2060954
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.51825,
+      "timestamp": "2021-04-30T05:50:31+00:00",
+      "last_traded_at": "2021-04-30T05:50:31+00:00",
+      "last_fetch_at": "2021-04-30T05:50:31+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://kickex.com/en/trade/UNI-USDT",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "HUSD",
+      "market": {
+        "name": "Huobi Global",
+        "identifier": "huobi",
+        "has_trading_incentive": false
+      },
+      "last": 41.0261,
+      "volume": 9873.662451643013,
+      "converted_last": {
+        "btc": 0.0007566,
+        "eth": 0.0147831,
+        "usd": 40.89
+      },
+      "converted_volume": {
+        "btc": 7.470462,
+        "eth": 145.963,
+        "usd": 403764
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.326323,
+      "timestamp": "2021-04-30T05:48:23+00:00",
+      "last_traded_at": "2021-04-30T05:48:23+00:00",
+      "last_fetch_at": "2021-04-30T05:48:23+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.hbg.com/en-us/exchange/?s=uni_husd",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "husd"
+    },
+    {
+      "base": "UNI",
+      "target": "ETH",
+      "market": {
+        "name": "Hoo.com",
+        "identifier": "hoo",
+        "has_trading_incentive": false
+      },
+      "last": 0.014598,
+      "volume": 81022.32999794492,
+      "converted_last": {
+        "btc": 0.00074654,
+        "eth": 0.01457178,
+        "usd": 40.37
+      },
+      "converted_volume": {
+        "btc": 60.487,
+        "eth": 1181,
+        "usd": 3271113
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 1.794024,
+      "timestamp": "2021-04-30T05:36:45+00:00",
+      "last_traded_at": "2021-04-30T05:36:45+00:00",
+      "last_fetch_at": "2021-04-30T05:36:45+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://hoo.com/spot/uni-eth",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "ethereum"
+    },
+    {
+      "base": "UNI",
+      "target": "BTC",
+      "market": {
+        "name": "FTX",
+        "identifier": "ftx_spot",
+        "has_trading_incentive": false
+      },
+      "last": 0.0007565,
+      "volume": 1762.7672504957038,
+      "converted_last": {
+        "btc": 0.0007565,
+        "eth": 0.01477116,
+        "usd": 40.95
+      },
+      "converted_volume": {
+        "btc": 1.333533,
+        "eth": 26.03811,
+        "usd": 72180
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.527704,
+      "timestamp": "2021-04-30T05:50:21+00:00",
+      "last_traded_at": "2021-04-30T05:50:21+00:00",
+      "last_fetch_at": "2021-04-30T05:50:21+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://ftx.com/trade/UNI/BTC",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "bitcoin"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "Bithumb Global",
+        "identifier": "bithumb_global",
+        "has_trading_incentive": false
+      },
+      "last": 40.995,
+      "volume": 166120.3014085864,
+      "converted_last": {
+        "btc": 0.00075825,
+        "eth": 0.01481525,
+        "usd": 41.02
+      },
+      "converted_volume": {
+        "btc": 125.961,
+        "eth": 2461,
+        "usd": 6814993
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 3.101749,
+      "timestamp": "2021-04-30T05:49:10+00:00",
+      "last_traded_at": "2021-04-30T05:49:10+00:00",
+      "last_fetch_at": "2021-04-30T05:49:10+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.bithumb.pro/en-us/spot/trade?q=UNI-USDT",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "PLN",
+      "market": {
+        "name": "BitBay",
+        "identifier": "bitbay",
+        "has_trading_incentive": false
+      },
+      "last": 153.99,
+      "volume": 1415.09244974,
+      "converted_last": {
+        "btc": 0.00075562,
+        "eth": 0.01474993,
+        "usd": 40.86
+      },
+      "converted_volume": {
+        "btc": 1.06927,
+        "eth": 20.872519,
+        "usd": 57818
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 1.092186,
+      "timestamp": "2021-04-30T05:38:44+00:00",
+      "last_traded_at": "2021-04-30T05:38:44+00:00",
+      "last_fetch_at": "2021-04-30T05:38:44+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://bitbay.net/en/exchange-rate",
+      "token_info_url": null,
+      "coin_id": "uniswap"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "NiceHash",
+        "identifier": "nice_hash",
+        "has_trading_incentive": false
+      },
+      "last": 40.4807,
+      "volume": 68.73600934,
+      "converted_last": {
+        "btc": 0.00074874,
+        "eth": 0.0146434,
+        "usd": 40.45
+      },
+      "converted_volume": {
+        "btc": 0.05146528,
+        "eth": 1.006529,
+        "usd": 2780.65
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.355576,
+      "timestamp": "2021-04-30T05:43:09+00:00",
+      "last_traded_at": "2021-04-30T05:43:09+00:00",
+      "last_fetch_at": "2021-04-30T05:48:44+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.nicehash.com/my/tradeview/UNIUSDT",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "BTC",
+      "market": {
+        "name": "NiceHash",
+        "identifier": "nice_hash",
+        "has_trading_incentive": false
+      },
+      "last": 0.00075308,
+      "volume": 297.22434105,
+      "converted_last": {
+        "btc": 0.00075308,
+        "eth": 0.01473491,
+        "usd": 40.73
+      },
+      "converted_volume": {
+        "btc": 0.22383371,
+        "eth": 4.379574,
+        "usd": 12106.48
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.31278,
+      "timestamp": "2021-04-30T05:23:53+00:00",
+      "last_traded_at": "2021-04-30T05:23:53+00:00",
+      "last_fetch_at": "2021-04-30T05:48:46+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.nicehash.com/my/tradeview/UNIBTC",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "bitcoin"
+    },
+    {
+      "base": "UNI",
+      "target": "TRY",
+      "market": {
+        "name": "Narkasa",
+        "identifier": "narkasa",
+        "has_trading_incentive": false
+      },
+      "last": 330.035,
+      "volume": 500.27,
+      "converted_last": {
+        "btc": 0.00074266,
+        "eth": 0.01452459,
+        "usd": 40.13
+      },
+      "converted_volume": {
+        "btc": 0.37153226,
+        "eth": 7.266219,
+        "usd": 20074
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.284303,
+      "timestamp": "2021-04-30T05:43:14+00:00",
+      "last_traded_at": "2021-04-30T05:43:14+00:00",
+      "last_fetch_at": "2021-04-30T05:48:46+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://narkasa.com/market/basic/UNITRY",
+      "token_info_url": null,
+      "coin_id": "uniswap"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "Narkasa",
+        "identifier": "narkasa",
+        "has_trading_incentive": false
+      },
+      "last": 40.6969,
+      "volume": 646.45,
+      "converted_last": {
+        "btc": 0.00075274,
+        "eth": 0.01470752,
+        "usd": 40.68
+      },
+      "converted_volume": {
+        "btc": 0.48660694,
+        "eth": 9.507679,
+        "usd": 26300
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.817254,
+      "timestamp": "2021-04-30T05:48:46+00:00",
+      "last_traded_at": "2021-04-30T05:48:46+00:00",
+      "last_fetch_at": "2021-04-30T05:48:46+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://narkasa.com/market/basic/UNIUSDT",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "USDT",
+      "market": {
+        "name": "ZBG",
+        "identifier": "zbg",
+        "has_trading_incentive": false
+      },
+      "last": 40.8962,
+      "volume": 4093.9786,
+      "converted_last": {
+        "btc": 0.00075642,
+        "eth": 0.01476966,
+        "usd": 40.94
+      },
+      "converted_volume": {
+        "btc": 3.096781,
+        "eth": 60.467,
+        "usd": 167620
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.166809,
+      "timestamp": "2021-04-30T05:50:05+00:00",
+      "last_traded_at": "2021-04-30T05:50:05+00:00",
+      "last_fetch_at": "2021-04-30T05:50:05+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": null,
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "tether"
+    },
+    {
+      "base": "UNI",
+      "target": "ETH",
+      "market": {
+        "name": "XT",
+        "identifier": "xt",
+        "has_trading_incentive": false
+      },
+      "last": 0.014776,
+      "volume": 12790.78,
+      "converted_last": {
+        "btc": 0.0007555,
+        "eth": 0.01476145,
+        "usd": 40.83
+      },
+      "converted_volume": {
+        "btc": 9.663394,
+        "eth": 188.81,
+        "usd": 522288
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 0.30391,
+      "timestamp": "2021-04-30T05:48:40+00:00",
+      "last_traded_at": "2021-04-30T05:48:40+00:00",
+      "last_fetch_at": "2021-04-30T05:48:40+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://www.xt.com/trade/uni_eth",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "ethereum"
+    },
+    {
+      "base": "UNI",
+      "target": "BTC",
+      "market": {
+        "name": "BtcTurk PRO",
+        "identifier": "btcturk",
+        "has_trading_incentive": false
+      },
+      "last": 0.0007647,
+      "volume": 534.1373,
+      "converted_last": {
+        "btc": 0.0007647,
+        "eth": 0.01493178,
+        "usd": 41.32
+      },
+      "converted_volume": {
+        "btc": 0.40845479,
+        "eth": 7.975619,
+        "usd": 22069
+      },
+      "trust_score": "green",
+      "bid_ask_spread_percentage": 1.657677,
+      "timestamp": "2021-04-30T05:40:44+00:00",
+      "last_traded_at": "2021-04-30T05:40:44+00:00",
+      "last_fetch_at": "2021-04-30T05:49:27+00:00",
+      "is_anomaly": false,
+      "is_stale": false,
+      "trade_url": "https://pro.btcturk.com/pro/al-sat/UNI_BTC",
+      "token_info_url": null,
+      "coin_id": "uniswap",
+      "target_coin_id": "bitcoin"
+    }
+  ]
+}
+Response headers
+ cache-control: public, max-age=30  content-type: application/json; charset=utf-8  expires: Fri, 30 Apr 2021 05:53:08 GMT 
+Responses
+Code	Description
+200	
+Get current data for a coin
+GET
+/coins/{id}/tickers
+Get coin tickers (paginated to 100 items)
+GET
+/coins/{id}/history
+Get historical data (name, price, market, stats) at a given date for a coin
+GET
+/coins/{id}/market_chart
+Get historical market data include price, market cap, and 24h volume (granularity auto)
+GET
+/coins/{id}/market_chart/range
+Get historical market data include price, market cap, and 24h volume within a range of timestamp (granularity auto)
+GET
+/coins/{id}/status_updates
+Get status updates for a given coin (beta)
+GET
+/coins/{id}/ohlc
+Get coin's OHLC (Beta)
+contract
+
+GET
+/coins/{id}/contract/{contract_address}
+Get coin info from contract address
+GET
+/coins/{id}/contract/{contract_address}/market_chart/
+Get historical market data include price, market cap, and 24h volume (granularity auto) from a contract address
+GET
+/coins/{id}/contract/{contract_address}/market_chart/range
+Get historical market data include price, market cap, and 24h volume within a range of timestamp (granularity auto) from a contract address
+exchanges (beta)
+
+GET
+/exchanges
+List all exchanges
+GET
+/exchanges/list
+List all supported markets id and name (no pagination required)
+GET
+/exchanges/{id}
+Get exchange volume in BTC and top 100 tickers only
+GET
+/exchanges/{id}/tickers
+Get exchange tickers (paginated, 100 tickers per page)
+GET
+/exchanges/{id}/status_updates
+Get status updates for a given exchange (beta)
+GET
+/exchanges/{id}/volume_chart
+Get volume_chart data for a given exchange (beta)
+finance (beta)
+
+GET
+/finance_platforms
+List all finance platforms
+GET
+/finance_products
+List all finance products
+indexes (beta)
+
+GET
+/indexes
+List all market indexes
+GET
+/indexes/{market_id}/{id}
+get market index by market id and index id
+GET
+/indexes/list
+list market indexes id and name
+GET
+/indexes/list_by_market_and_id/{market_id}/{id}
+get market index by market id and market index id
+derivatives (beta)
+
+GET
+/derivatives
+List all derivative tickers
+GET
+/derivatives/exchanges
+List all derivative exchanges
+GET
+/derivatives/exchanges/{id}
+show derivative exchange data
+GET
+/derivatives/exchanges/list
+List all derivative exchanges name and identifier
+status_updates (beta)
+
+GET
+/status_updates
+List all status_updates with data (description, category, created_at, user, user_title and pin)
+events
+
+GET
+/events
+Get events, paginated by 100
+GET
+/events/countries
+Get list of event countries
+GET
+/events/types
+Get list of events types
+exchange_rates
+
+GET
+/exchange_rates
+Get BTC-to-Currency exchange rates
+trending
+
+GET
+/search/trending
+Get trending search coins (Top-7) on CoinGecko in the last 24 hours
+global
+
+GET
+/global
+Get cryptocurrency global data
+GET
+/global/decentralized_finance_defi
+Get cryptocurrency global decentralized finance(defi) data
+FAQ
+We are here to help
+If you are experiencing any issues or problems, contact us at hello(at)coingecko.com
+
+Stay up to date with our API changes by subscribing to our API Mailing List
+IMPORTANT DISCLAIMER: All content provided herein our website, hyperlinked sites, associated applications, forums, blogs, social media accounts and other platforms (“Site”) is for your general information only, procured from third party sources. We make no warranties of any kind in relation to our content, including but not limited to accuracy and updatedness. No part of the content that we provide constitutes financial advice, legal advice or any other form of advice meant for your specific reliance for any purpose. Any use or reliance on our content is solely at your own risk and discretion. You should conduct your own research, review, analyse and verify our content before relying on them. Trading is a highly risky activity that can lead to major losses, please therefore consult your financial advisor before making any decision. No content on our Site is meant to be a solicitation or offer.
+CoinGecko LogoCoinGecko provides a fundamental analysis of the crypto market. In addition to tracking price, volume and market capitalization, CoinGecko tracks community growth, open-source code development, major events and on-chain metrics.
+FAQ | Help Center | Contact Us | Disclaimer
+Terms of Service | Privacy Policy | Bug Bounty
+Ad Policy
+© 2021 CoinGecko. All Rights Reserved.
+CoinGecko
+About Us
+Methodology
+Careers
+Branding Guide
+Request Form
+Advertising
+Donations
+Bitcoin
+Litecoin
+Bitcoin Cash
+Ethereum
+TomoChain
+Beam
+Interested to stay up-to-date with cryptocurrencies?
+Get the latest crypto news, updates, and reports by subscribing to our free newsletter.
+Your email address
+Download our app now
+Google Play Store Button Apple App Store Button
+Chrome Store Button
+This website uses cookies for functionality, analytics and advertising purposes as described in our Privacy Policy. If you agree to our use of cookies, please continue to use our site.
