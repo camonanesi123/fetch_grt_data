@@ -9,82 +9,70 @@ import numpy as np
 import pandas as pd
 import gspread
 
+# result of date 
 res = pd.DataFrame(columns=('token_name', 'Price', 'Circulating supply','Max Supply','Market Cap','Fully Diluted Valuation','Volume (last30d)','Sales (30d - TT)','Annualized Sales','Token holders rewards','Earnings','TVL'))
+graph_url = {
+  'uni':"https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2",
+  'pancake':"https://api.thegraph.com/subgraphs/name/pancakeswap/exchange",
+  'sushi':"https://api.thegraph.com/subgraphs/name/croco-finance/sushiswap",
+  'mDex':"https://graph.mdex.cc/subgraphs/name/mdex/swap",
+  'balancer':"https://api.thegraph.com/subgraphs/name/balancer-labs/balancer",
+  'bancor':"https://api.thegraph.com/subgraphs/name/blocklytics/bancor"
+}
 
+def query_coingecko(token_name):
+    """Fetches Coingecko Data.
+    Retrieves price,c_supply,m_supply,mcap,fd_cap from coingecko
+    Args:
+        token_name
+    Returns:
+       price,c_supply,m_supply,mcap,fd_cap from coingecko
+    Raises:
+        Exception: An error occurred api request.
+    """    
+    try:
+      price = cg.get_coin_by_id(token_name)['market_data']['current_price']['usd']
+    except Exception as e:
+      print('Error:', e)
+      price = None    
 
-
-# uniswap unified fee forumla
-def uni_query(): #query uniswap_grt api
-    #get price from coingecko
-    p_uni = cg.get_coin_by_id('uniswap')['market_data']['current_price']['usd']
     #get circulting_supply
-    c_uni= cg.get_coin_by_id('uniswap')['market_data']['circulating_supply']
+    try:
+      c_supply= cg.get_coin_by_id(token_name)['market_data']['circulating_supply']
+    except Exception as e:
+      print('Error:', e)
+      c_supply = None   
     #get max_suply
-    max_uni =  cg.get_coin_by_id('uniswap')['market_data']['max_supply']  
+    try:
+      m_supply =  cg.get_coin_by_id(token_name)['market_data']['max_supply']  
+    except Exception as e:
+      print('Error:', e)
+      m_supply = None  
     #get market_cap
-    mcap_uni = cg.get_coin_by_id('uniswap')['market_data']['market_cap']['usd']
-    #fully dilute
-    fd_uni = cg.get_coin_by_id('uniswap')['market_data']['fully_diluted_valuation']['usd']
-    global res
-    #query past 30 days uniswapDaily Date by block_number
-    query2 = """
-    {
-    uniswapDayDatas(first: 30,block:{number:"""+str(indexed_block_num)+"""},orderBy:date,orderDirection:desc){
-      id
-      date
-      dailyVolumeUSD
-      totalLiquidityUSD
-    }
-    }
-    """
-    #begin fetching
-    print(query2)
-    request = requests.post('https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2', json={'query': query2}, headers=headers)
-    if request.status_code == 200:
-        result = request.json()
-            #statistic daliy volume , daily tvl , daily fee.
-        monthly_fee = 0
-        sum_tvl =0
-        trading_vl = 0
-        for i in result['data']['uniswapDayDatas']:
-            #print(i)
-            volume = float(i['dailyVolumeUSD'])
-            trading_vl+=volume
-            monthly_fee+=volume*0.003
-            sum_tvl += float(i['totalLiquidityUSD'])
+    try:
+      mcap = cg.get_coin_by_id(token_name)['market_data']['market_cap']['usd']
+    except Exception as e:
+      print('Error:', e)
+      mcap = None    
+      #fully dilute
+    try:
+      fd_cap = cg.get_coin_by_id(token_name)['market_data']['fully_diluted_valuation']['usd']
+    except Exception as e:
+      print('Error:', e)
+      fd_cap = None
+      
+    return (price,c_supply,m_supply,mcap,fd_cap)
+# uniswap unified fee forumla
 
-        monthly_average_tvl = sum_tvl/30
-        print('p_uni is {0}'.format(p_uni))
-        print('c_uni is {0}'.format(c_uni))
-        print('max_uni is {0}'.format(max_uni))
-        print('mcap_uni is {0}'.format(mcap_uni))
-        print('fd_uni is {0}'.format(fd_uni))
-        print('30 days trading volume is {0}'.format(trading_vl))
-        print("30 days daily average liquidity:{0}".format(monthly_average_tvl))
-        print("last 30 days return:{0}".format(monthly_fee))
-        predicted_yearly_fee = monthly_fee*12
-        print("estimated annually return:{0}".format(predicted_yearly_fee))
-        token_holder_rewards=0.1666666
-        earnings = predicted_yearly_fee*token_holder_rewards
-        print("earnings:{0}".format(earnings))
-        res = res.append([{'token_name':'uni','Price':p_uni,'Circulating supply':c_uni,'Max Supply':max_uni,'Market Cap':mcap_uni,'Fully Diluted Valuation':fd_uni,'Volume (last30d)':trading_vl,'Sales (30d - TT)':monthly_fee,'Annualized Sales':predicted_yearly_fee,'Token holders rewards':token_holder_rewards,'Earnings':earnings,'TVL':monthly_average_tvl}], ignore_index=True)
-        #print(res.head())
-    else:
-        raise Exception("Query failed to run by returning code of {}. {}".format(request.status_code, query))
-
-#balancer different pool different fee formula. here for simplification. revene = fee*0.003
 def bal_query(): #query uniswap_grt api
     global res
     #get price from coingecko
-    p_bal = cg.get_coin_by_id('balancer')['market_data']['current_price']['usd']
-    #get circulting_supply
-    c_bal= cg.get_coin_by_id('balancer')['market_data']['circulating_supply']
-    #get max_suply
-    max_bal =  cg.get_coin_by_id('balancer')['market_data']['max_supply']  
-    #get market_cap
-    mcap_bal = cg.get_coin_by_id('balancer')['market_data']['market_cap']['usd']
-    #fully dilute
-    fd_bal = cg.get_coin_by_id('balancer')['market_data']['fully_diluted_valuation']['usd']
+    tup1 = query_coingecko('balancer')
+    p_bal = tup1[0]
+    c_bal= tup1[1]
+    max_bal = tup1[2]
+    mcap_bal = tup1[3]
+    fd_bal = tup1[4]
     #30 days before blocknum = currently block_num - 6500*30
     month_before_block= indexed_block_num-195000
     bal_query = """
@@ -123,39 +111,41 @@ def bal_query(): #query uniswap_grt api
     else:
       raise Exception("Query failed to run by returning code of {}. {}".format(request.status_code, bal_query))
 
-def dodo_query():
-     #30 1619740800 统计 前30天 每天8:00 unix时间交易额
-    month_before_block= indexed_block_num-195000
-    #查询每天8点统计的昨天数据 86400
-    dodo_query = """
-    {
-      pairDayDatas(where :{date:1619740800} ,orderBy:date,orderDirection:desc)
+def fetch_thegrahp(token_name):
+    """Fetches thegraph Data.
+    Retrieves price,c_supply,m_supply,mcap,fd_cap from coingecko
+    Args:
+        token_name
+    Returns:
+       last 30days trading_volume | TVL
+    Raises:
+        Exception: An error occurred api request.
+    """    
+    #query data
+    query_data = """
       {
-        date
+      uniswapDayDatas(first: 31,orderBy:date,orderDirection:desc){
         id
-        volumeUSD
-        feeBase
-        lpFeeRate
+        date
+        dailyVolumeUSD
+        totalLiquidityUSD
       }
-    }
-    """
-    print(bal_query)
-    request = requests.post('https://api.thegraph.com/subgraphs/name/dodoex/dodoex-v2', json={'query': dodo_query}, headers=headers)
-    if request.status_code == 200:
-      result=request.json()
-      #then calculate tvl and monthly trading volume
-      tvl = result['data']['today_data']['totalLiquidity']
-      trading_volume = result['data']['today_data']['totalSwapVolume']
-      monthly_tv = float(result['data']['today_data']['totalSwapVolume'])-float(result['data']['month_before_data']['totalSwapVolume'])
-      bal_monthly_fee = monthly_tv*0.003
-      bal_monthly_revenue = bal_monthly_fee * 0.15
-      print("balancer tvl is {0}".format(tvl))
-      print("balancer monthly trading_volume is {0}".format(monthly_tv))
-      print("balancer monthly fee is {0}".format(bal_monthly_fee))
-      print("balancer monthly revenue is {0}".format(bal_monthly_revenue))
-      print("balancer yearly approximately revenue is{0}".format(bal_monthly_revenue*12))
-    else:
-      raise Exception("Query failed to run by returning code of {}. {}".format(request.status_code, bal_query)) 
+      }
+      """
+    url = graph_url[token_name]
+    try:
+      request = requests.post(url, json={'query': query_data}, headers=headers)
+      if request.status_code == 200:
+        result = request.json()
+        trading_vl = 0
+        last_day_tvl = result['data']['uniswapDayDatas'][1]['totalLiquidityUSD']
+      #calculating from last day data to previous 30 days
+      for i in range(1,31):
+          volume = float(result['data']['uniswapDayDatas'][i]['dailyVolumeUSD'])
+          trading_vl+=volume
+      return trading_vl,last_day_tvl
+    except Exception as e:
+      raise Exception("Query failed to run by returning code of {}. {}".format(request.status_code, query))
 
 #get current block number
 w3 = Web3(Web3.HTTPProvider(infura_api))
@@ -164,13 +154,55 @@ block_num = w3.eth.block_number
 indexed_block_num = block_num -5
 print("begin to query from current block number {0} to past 30days data".format(block_num))
 
-#get uni_data
-uni_query()
-#fetch bal_data
-bal_query()
+#bal_query()
 
+
+
+print('fetch pancake ..................')
+tup1 = query_coingecko('pancakeswap-token')
+print(tup1)
+tup2 = fetch_thegrahp('pancake')
+monthly_fee=tup2[0]*0.002
+predicted_yearly_fee = monthly_fee*12
+token_holder_rewards=0.15
+earnings = predicted_yearly_fee*token_holder_rewards
+res = res.append([{'token_name':'pancake','Price':tup1[0],'Circulating supply':tup1[1],'Max Supply':tup1[2],'Market Cap':tup1[3],'Fully Diluted Valuation':tup1[4],'Volume (last30d)':tup2[0],'Sales (30d - TT)':monthly_fee,'Annualized Sales':predicted_yearly_fee,'Token holders rewards':token_holder_rewards,'Earnings':earnings,'TVL':tup2[1]}], ignore_index=True)
 print(res)
-#writting the res object to google sheet
+print('fetch uni ..................')
+tup1 = query_coingecko('uniswap')
+tup2 = fetch_thegrahp('uni')
+monthly_fee=tup2[0]*0.003
+predicted_yearly_fee = monthly_fee*12
+token_holder_rewards=0.1666666
+earnings = predicted_yearly_fee*token_holder_rewards
+res = res.append([{'token_name':'uni','Price':tup1[0],'Circulating supply':tup1[1],'Max Supply':tup1[2],'Market Cap':tup1[3],'Fully Diluted Valuation':tup1[4],'Volume (last30d)':tup2[0],'Sales (30d - TT)':monthly_fee,'Annualized Sales':predicted_yearly_fee,'Token holders rewards':token_holder_rewards,'Earnings':earnings,'TVL':tup2[1]}], ignore_index=True)
+print(res)
+
+print('fetch sushi ..................')
+tup1 = query_coingecko('sushi')
+tup2 = fetch_thegrahp('sushi')
+monthly_fee=tup2[0]*0.003
+predicted_yearly_fee = monthly_fee*12
+token_holder_rewards=0.1666666
+earnings = predicted_yearly_fee*token_holder_rewards
+res = res.append([{'token_name':'sushi','Price':tup1[0],'Circulating supply':tup1[1],'Max Supply':tup1[2],'Market Cap':tup1[3],'Fully Diluted Valuation':tup1[4],'Volume (last30d)':tup2[0],'Sales (30d - TT)':monthly_fee,'Annualized Sales':predicted_yearly_fee,'Token holders rewards':token_holder_rewards,'Earnings':earnings,'TVL':tup2[1]}], ignore_index=True)
+print(res)
+
+print('fetch mdex ..................')
+tup1 = query_coingecko('mdex')
+tup2 = fetch_thegrahp('mDex')
+monthly_fee=tup2[0]*0.003
+predicted_yearly_fee = monthly_fee*12
+token_holder_rewards=0.14
+earnings = predicted_yearly_fee*token_holder_rewards
+res = res.append([{'token_name':'mdex','Price':tup1[0],'Circulating supply':tup1[1],'Max Supply':tup1[2],'Market Cap':tup1[3],'Fully Diluted Valuation':tup1[4],'Volume (last30d)':tup2[0],'Sales (30d - TT)':monthly_fee,'Annualized Sales':predicted_yearly_fee,'Token holders rewards':token_holder_rewards,'Earnings':earnings,'TVL':tup2[1]}], ignore_index=True)
+print(res)
+
+print('fetch bancor ..................')
+#not a same skema
+
+print('fetch balancer ..................')
+bal_query()
 
 gc = gspread.oauth()
 
