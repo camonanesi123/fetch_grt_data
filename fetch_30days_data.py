@@ -147,7 +147,7 @@ def fetch_thegrahp(token_name):
           trading_vl+=volume
       return trading_vl,last_day_tvl
     except Exception as e:
-      raise Exception("Query failed to run by returning code of {}. {}".format(request.status_code, query))
+      raise Exception("Query failed to run by returning code of {}. {}".format(request.status_code, query_data))
 def dodo_query():
     global res
     #get price from coingecko
@@ -378,64 +378,97 @@ def oneinch_query():
 def zeroX_quer():
   #0x
   pass
+
+#query sushi on different chains
+def fetch_sushi(chain_url):
+
+  query_data ="""
+  {
+    dayDatas(last: 30,orderBy:id,orderDirection:desc) {
+  	  id
+      date
+      volumeUSD
+      liquidityUSD
+    }
+  }
+  """
+  try:
+    request = requests.post(chain_url, json={'query': query_data}, headers=headers)
+    if request.status_code == 200:
+      result = request.json()
+      trading_vl = 0
+      last_day_tvl = result['data']['dayDatas'][0]['liquidityUSD']
+      last_day_vl = result['data']['dayDatas'][0]['volumeUSD']
+    #calculating from last day data to previous 30 days
+    for i in range(0,30):
+        volume = float(result['data']['dayDatas'][i]['volumeUSD'])
+        trading_vl+=volume
+    print(last_day_vl,last_day_tvl)
+    return trading_vl,last_day_tvl
+  except Exception as e:
+    raise Exception("Query failed to run by returning code of {}. {}".format(request.status_code, query_data))
+
+
 #get current block number
 w3 = Web3(Web3.HTTPProvider(infura_api))
 block_num = w3.eth.block_number
 #indexed block_num
 indexed_block_num = block_num -5
-print("begin to query from current block number {0} to past 30days data".format(block_num))
-curve_query()
-oneinch_query()
-bancor_query()
-print('fetch pancake ..................')
-tup1 = query_coingecko('pancakeswap-token')
-print(tup1)
-tup2 = fetch_thegrahp('pancake')
-monthly_fee=tup2[0]*0.002
-predicted_yearly_fee = monthly_fee*12
-token_holder_rewards=0.15
-earnings = predicted_yearly_fee*token_holder_rewards
-res = res.append([{'token_name':'pancake','Price':tup1[0],'Circulating supply':tup1[1],'Max Supply':tup1[2],'Market Cap':tup1[3],'Fully Diluted Valuation':tup1[4],'Volume (last30d)':tup2[0],'Sales (30d - TT)':monthly_fee,'Annualized Sales':predicted_yearly_fee,'Token holders rewards':token_holder_rewards,'Earnings':earnings,'TVL':tup2[1]}], ignore_index=True)
-print(res)
-print('fetch uni ..................')
-tup1 = query_coingecko('uniswap')
-tup2 = fetch_thegrahp('uni')
-monthly_fee=tup2[0]*0.003
-predicted_yearly_fee = monthly_fee*12
-token_holder_rewards=0.1666666
-earnings = predicted_yearly_fee*token_holder_rewards
-res = res.append([{'token_name':'uni','Price':tup1[0],'Circulating supply':tup1[1],'Max Supply':tup1[2],'Market Cap':tup1[3],'Fully Diluted Valuation':tup1[4],'Volume (last30d)':tup2[0],'Sales (30d - TT)':monthly_fee,'Annualized Sales':predicted_yearly_fee,'Token holders rewards':token_holder_rewards,'Earnings':earnings,'TVL':tup2[1]}], ignore_index=True)
-print(res)
+fetch_sushi('https://api.thegraph.com/subgraphs/name/sushiswap/exchange')
 
-print('fetch sushi ..................')
-tup1 = query_coingecko('sushi')
-tup2 = fetch_thegrahp('sushi')
-monthly_fee=tup2[0]*0.003
-predicted_yearly_fee = monthly_fee*12
-token_holder_rewards=0.1666666
-earnings = predicted_yearly_fee*token_holder_rewards
-res = res.append([{'token_name':'sushi','Price':tup1[0],'Circulating supply':tup1[1],'Max Supply':tup1[2],'Market Cap':tup1[3],'Fully Diluted Valuation':tup1[4],'Volume (last30d)':tup2[0],'Sales (30d - TT)':monthly_fee,'Annualized Sales':predicted_yearly_fee,'Token holders rewards':token_holder_rewards,'Earnings':earnings,'TVL':tup2[1]}], ignore_index=True)
-print(res)
+# print("begin to query from current block number {0} to past 30days data".format(block_num))
+# curve_query()
+# oneinch_query()
+# bancor_query()
+# print('fetch pancake ..................')
+# tup1 = query_coingecko('pancakeswap-token')
+# print(tup1)
+# tup2 = fetch_thegrahp('pancake')
+# monthly_fee=tup2[0]*0.002
+# predicted_yearly_fee = monthly_fee*12
+# token_holder_rewards=0.15
+# earnings = predicted_yearly_fee*token_holder_rewards
+# res = res.append([{'token_name':'pancake','Price':tup1[0],'Circulating supply':tup1[1],'Max Supply':tup1[2],'Market Cap':tup1[3],'Fully Diluted Valuation':tup1[4],'Volume (last30d)':tup2[0],'Sales (30d - TT)':monthly_fee,'Annualized Sales':predicted_yearly_fee,'Token holders rewards':token_holder_rewards,'Earnings':earnings,'TVL':tup2[1]}], ignore_index=True)
+# print(res)
+# print('fetch uni ..................')
+# tup1 = query_coingecko('uniswap')
+# tup2 = fetch_thegrahp('uni')
+# monthly_fee=tup2[0]*0.003
+# predicted_yearly_fee = monthly_fee*12
+# token_holder_rewards=0.1666666
+# earnings = predicted_yearly_fee*token_holder_rewards
+# res = res.append([{'token_name':'uni','Price':tup1[0],'Circulating supply':tup1[1],'Max Supply':tup1[2],'Market Cap':tup1[3],'Fully Diluted Valuation':tup1[4],'Volume (last30d)':tup2[0],'Sales (30d - TT)':monthly_fee,'Annualized Sales':predicted_yearly_fee,'Token holders rewards':token_holder_rewards,'Earnings':earnings,'TVL':tup2[1]}], ignore_index=True)
+# print(res)
 
-print('fetch mdex ..................')
-tup1 = query_coingecko('mdex')
-tup2 = fetch_thegrahp('mDex')
-monthly_fee=tup2[0]*0.003
-predicted_yearly_fee = monthly_fee*12
-token_holder_rewards=0.14
-earnings = predicted_yearly_fee*token_holder_rewards
-res = res.append([{'token_name':'mdex','Price':tup1[0],'Circulating supply':tup1[1],'Max Supply':tup1[2],'Market Cap':tup1[3],'Fully Diluted Valuation':tup1[4],'Volume (last30d)':tup2[0],'Sales (30d - TT)':monthly_fee,'Annualized Sales':predicted_yearly_fee,'Token holders rewards':token_holder_rewards,'Earnings':earnings,'TVL':tup2[1]}], ignore_index=True)
-print(res)
+# print('fetch sushi ..................')
+# tup1 = query_coingecko('sushi')
+# tup2 = fetch_thegrahp('sushi')
+# monthly_fee=tup2[0]*0.003
+# predicted_yearly_fee = monthly_fee*12
+# token_holder_rewards=0.1666666
+# earnings = predicted_yearly_fee*token_holder_rewards
+# res = res.append([{'token_name':'sushi','Price':tup1[0],'Circulating supply':tup1[1],'Max Supply':tup1[2],'Market Cap':tup1[3],'Fully Diluted Valuation':tup1[4],'Volume (last30d)':tup2[0],'Sales (30d - TT)':monthly_fee,'Annualized Sales':predicted_yearly_fee,'Token holders rewards':token_holder_rewards,'Earnings':earnings,'TVL':tup2[1]}], ignore_index=True)
+# print(res)
 
-print('fetch dodo ..................')
-dodo_query()
-print(res)
+# print('fetch mdex ..................')
+# tup1 = query_coingecko('mdex')
+# tup2 = fetch_thegrahp('mDex')
+# monthly_fee=tup2[0]*0.003
+# predicted_yearly_fee = monthly_fee*12
+# token_holder_rewards=0.14
+# earnings = predicted_yearly_fee*token_holder_rewards
+# res = res.append([{'token_name':'mdex','Price':tup1[0],'Circulating supply':tup1[1],'Max Supply':tup1[2],'Market Cap':tup1[3],'Fully Diluted Valuation':tup1[4],'Volume (last30d)':tup2[0],'Sales (30d - TT)':monthly_fee,'Annualized Sales':predicted_yearly_fee,'Token holders rewards':token_holder_rewards,'Earnings':earnings,'TVL':tup2[1]}], ignore_index=True)
+# print(res)
 
-print('fetch balancer ..................')
-bal_query()
+# print('fetch dodo ..................')
+# dodo_query()
+# print(res)
 
-gc = gspread.oauth()
+# print('fetch balancer ..................')
+# bal_query()
 
-wks = gc.open("test").sheet1
+# gc = gspread.oauth()
 
-wks.update([res.columns.values.tolist()] + res.values.tolist())
+# wks = gc.open("test").sheet1
+
+# wks.update([res.columns.values.tolist()] + res.values.tolist())
