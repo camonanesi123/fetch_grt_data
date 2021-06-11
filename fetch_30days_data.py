@@ -5,11 +5,14 @@ from requests.api import request
 from web3 import Web3
 from pycoingecko import CoinGeckoAPI
 cg = CoinGeckoAPI()
+from decimal import Decimal
 infura_api = "https://mainnet.infura.io/v3/f4087772a79840a6b24442386b8d54d3"
 headers = {"Authorization": "Bearer YOUR API KEY"}
 import numpy as np
 import pandas as pd
 import gspread
+
+import nerve,serum,thorswap,sushi,raydium,quickswap
 
 import time,datetime
 # result of date 
@@ -379,34 +382,6 @@ def zeroX_quer():
   #0x
   pass
 
-#query sushi on different chains
-def fetch_sushi(chain_url):
-
-  query_data ="""
-  {
-    dayDatas(last: 30,orderBy:id,orderDirection:desc) {
-  	  id
-      date
-      volumeUSD
-      liquidityUSD
-    }
-  }
-  """
-  try:
-    request = requests.post(chain_url, json={'query': query_data}, headers=headers)
-    if request.status_code == 200:
-      result = request.json()
-      trading_vl = 0
-      last_day_tvl = result['data']['dayDatas'][0]['liquidityUSD']
-      last_day_vl = result['data']['dayDatas'][0]['volumeUSD']
-    #calculating from last day data to previous 30 days
-    for i in range(0,30):
-        volume = float(result['data']['dayDatas'][i]['volumeUSD'])
-        trading_vl+=volume
-    print(last_day_vl,last_day_tvl)
-    return trading_vl,last_day_tvl
-  except Exception as e:
-    raise Exception("Query failed to run by returning code of {}. {}".format(request.status_code, query_data))
 
 
 #get current block number
@@ -414,41 +389,43 @@ w3 = Web3(Web3.HTTPProvider(infura_api))
 block_num = w3.eth.block_number
 #indexed block_num
 indexed_block_num = block_num -5
-fetch_sushi('https://api.thegraph.com/subgraphs/name/sushiswap/exchange')
 
-# print("begin to query from current block number {0} to past 30days data".format(block_num))
-# curve_query()
-# oneinch_query()
-# bancor_query()
-# print('fetch pancake ..................')
-# tup1 = query_coingecko('pancakeswap-token')
-# print(tup1)
-# tup2 = fetch_thegrahp('pancake')
-# monthly_fee=tup2[0]*0.002
-# predicted_yearly_fee = monthly_fee*12
-# token_holder_rewards=0.15
-# earnings = predicted_yearly_fee*token_holder_rewards
-# res = res.append([{'token_name':'pancake','Price':tup1[0],'Circulating supply':tup1[1],'Max Supply':tup1[2],'Market Cap':tup1[3],'Fully Diluted Valuation':tup1[4],'Volume (last30d)':tup2[0],'Sales (30d - TT)':monthly_fee,'Annualized Sales':predicted_yearly_fee,'Token holders rewards':token_holder_rewards,'Earnings':earnings,'TVL':tup2[1]}], ignore_index=True)
-# print(res)
-# print('fetch uni ..................')
-# tup1 = query_coingecko('uniswap')
-# tup2 = fetch_thegrahp('uni')
-# monthly_fee=tup2[0]*0.003
-# predicted_yearly_fee = monthly_fee*12
-# token_holder_rewards=0.1666666
-# earnings = predicted_yearly_fee*token_holder_rewards
-# res = res.append([{'token_name':'uni','Price':tup1[0],'Circulating supply':tup1[1],'Max Supply':tup1[2],'Market Cap':tup1[3],'Fully Diluted Valuation':tup1[4],'Volume (last30d)':tup2[0],'Sales (30d - TT)':monthly_fee,'Annualized Sales':predicted_yearly_fee,'Token holders rewards':token_holder_rewards,'Earnings':earnings,'TVL':tup2[1]}], ignore_index=True)
-# print(res)
+print("begin to query from current block number {0} to past 30days data".format(block_num))
+curve_query()
+oneinch_query()
+bancor_query()
+print('fetch pancake ..................')
+tup1 = query_coingecko('pancakeswap-token')
+print(tup1)
+tup2 = fetch_thegrahp('pancake')
+monthly_fee=tup2[0]*0.002
+predicted_yearly_fee = monthly_fee*12
+token_holder_rewards=0.15
+earnings = predicted_yearly_fee*token_holder_rewards
+res = res.append([{'token_name':'pancake','Price':tup1[0],'Circulating supply':tup1[1],'Max Supply':tup1[2],'Market Cap':tup1[3],'Fully Diluted Valuation':tup1[4],'Volume (last30d)':tup2[0],'Sales (30d - TT)':monthly_fee,'Annualized Sales':predicted_yearly_fee,'Token holders rewards':token_holder_rewards,'Earnings':earnings,'TVL':tup2[1]}], ignore_index=True)
+print(res)
+print('fetch uni ..................')
+tup1 = query_coingecko('uniswap')
+tup2 = fetch_thegrahp('uni')
+monthly_fee=tup2[0]*0.003
+predicted_yearly_fee = monthly_fee*12
+token_holder_rewards=0.1666666
+earnings = predicted_yearly_fee*token_holder_rewards
+res = res.append([{'token_name':'uni','Price':tup1[0],'Circulating supply':tup1[1],'Max Supply':tup1[2],'Market Cap':tup1[3],'Fully Diluted Valuation':tup1[4],'Volume (last30d)':tup2[0],'Sales (30d - TT)':monthly_fee,'Annualized Sales':predicted_yearly_fee,'Token holders rewards':token_holder_rewards,'Earnings':earnings,'TVL':tup2[1]}], ignore_index=True)
+print(res)
 
-# print('fetch sushi ..................')
-# tup1 = query_coingecko('sushi')
-# tup2 = fetch_thegrahp('sushi')
-# monthly_fee=tup2[0]*0.003
-# predicted_yearly_fee = monthly_fee*12
-# token_holder_rewards=0.1666666
-# earnings = predicted_yearly_fee*token_holder_rewards
-# res = res.append([{'token_name':'sushi','Price':tup1[0],'Circulating supply':tup1[1],'Max Supply':tup1[2],'Market Cap':tup1[3],'Fully Diluted Valuation':tup1[4],'Volume (last30d)':tup2[0],'Sales (30d - TT)':monthly_fee,'Annualized Sales':predicted_yearly_fee,'Token holders rewards':token_holder_rewards,'Earnings':earnings,'TVL':tup2[1]}], ignore_index=True)
-# print(res)
+print('fetch sushi ..................')
+tup1 = query_coingecko('sushi')
+tup2 = sushi.sushi_total()
+tv=float(tup2[0])
+tvl=float(tup2[1])
+
+monthly_fee=tv*0.003
+predicted_yearly_fee = monthly_fee*12
+token_holder_rewards=0.1666666
+earnings = predicted_yearly_fee*token_holder_rewards
+res = res.append([{'token_name':'sushi','Price':tup1[0],'Circulating supply':tup1[1],'Max Supply':tup1[2],'Market Cap':tup1[3],'Fully Diluted Valuation':tup1[4],'Volume (last30d)':tv,'Sales (30d - TT)':monthly_fee,'Annualized Sales':predicted_yearly_fee,'Token holders rewards':token_holder_rewards,'Earnings':earnings,'TVL':tvl}], ignore_index=True)
+print(res)
 
 # print('fetch mdex ..................')
 # tup1 = query_coingecko('mdex')
@@ -460,15 +437,52 @@ fetch_sushi('https://api.thegraph.com/subgraphs/name/sushiswap/exchange')
 # res = res.append([{'token_name':'mdex','Price':tup1[0],'Circulating supply':tup1[1],'Max Supply':tup1[2],'Market Cap':tup1[3],'Fully Diluted Valuation':tup1[4],'Volume (last30d)':tup2[0],'Sales (30d - TT)':monthly_fee,'Annualized Sales':predicted_yearly_fee,'Token holders rewards':token_holder_rewards,'Earnings':earnings,'TVL':tup2[1]}], ignore_index=True)
 # print(res)
 
-# print('fetch dodo ..................')
-# dodo_query()
-# print(res)
+print('fetch dodo ..................')
+dodo_query()
+print(res)
 
-# print('fetch balancer ..................')
-# bal_query()
+print('fetch balancer ..................')
+bal_query()
 
-# gc = gspread.oauth()
+#get nerve data
+print('fetch nerve ..................')
+tup1 = query_coingecko('nerve-finance')
+tvl,tr = nerve.nerve()
+tvl=float(tvl)
+tr=float(tr)
+volume_30= tr*30
+monthly_fee = volume_30*0.0002
+predicted_yearly_fee = monthly_fee*12
+token_holder_rewards=0.9983
+res = res.append([{'token_name':'nrv','Price':tup1[0],'Circulating supply':tup1[1],'Max Supply':tup1[2],'Market Cap':tup1[3],'Fully Diluted Valuation':tup1[4],'Volume (last30d)':tr*30,'Sales (30d - TT)':monthly_fee,'Annualized Sales':predicted_yearly_fee,'Token holders rewards':token_holder_rewards,'Earnings':earnings,'TVL':tvl}], ignore_index=True)
+print(res)
 
-# wks = gc.open("test").sheet1
+#get serum data
+print('fetch serum ..................')
+tup1 = query_coingecko('serum')
+tvl,tr = serum.serum_dex()
+tvl=float(tvl)
+tr=float(tr)
+volume_30= tr*30
+monthly_fee = volume_30*0.0015
+predicted_yearly_fee = monthly_fee*12
+token_holder_rewards=0.5
+res = res.append([{'token_name':'serum','Price':tup1[0],'Circulating supply':tup1[1],'Max Supply':tup1[2],'Market Cap':tup1[3],'Fully Diluted Valuation':tup1[4],'Volume (last30d)':tr*30,'Sales (30d - TT)':monthly_fee,'Annualized Sales':predicted_yearly_fee,'Token holders rewards':token_holder_rewards,'Earnings':earnings,'TVL':tvl}], ignore_index=True)
+print(res)
 
-# wks.update([res.columns.values.tolist()] + res.values.tolist())
+print('fetch rune ..................')
+tup1 = query_coingecko('rune')
+tr = thorswap.thorswap()
+tvl=float(tvl)
+tr=float(tr)
+volume_30= float(thorswap.torswap_volume())
+monthly_fee = volume_30*0.15
+predicted_yearly_fee = monthly_fee*12
+token_holder_rewards=0.17
+res = res.append([{'token_name':'rune','Price':tup1[0],'Circulating supply':tup1[1],'Max Supply':tup1[2],'Market Cap':tup1[3],'Fully Diluted Valuation':tup1[4],'Volume (last30d)':tr*30,'Sales (30d - TT)':monthly_fee,'Annualized Sales':predicted_yearly_fee,'Token holders rewards':token_holder_rewards,'Earnings':earnings,'TVL':tvl}], ignore_index=True)
+print(res)
+
+gc = gspread.oauth()
+
+wks = gc.open("test").sheet1
+wks.update([res.columns.values.tolist()] + res.values.tolist())

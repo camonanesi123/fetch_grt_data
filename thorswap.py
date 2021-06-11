@@ -27,7 +27,7 @@ def torswap_volume():
     #print(list)
     for i in range(1,31):
         past_30_days_volume +=Decimal(list[i]["totalVolume"]).quantize(Decimal("0.01"), rounding = "ROUND_HALF_UP")/(10**8)
-        volume_usd = past_30_days_volume*price_rune
+    volume_usd = past_30_days_volume*price_rune
   print(volume_usd)
   return volume_usd
 def main():

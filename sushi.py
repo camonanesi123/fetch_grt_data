@@ -62,6 +62,7 @@ def sushi_total():
     
     print("\n")
     print(trading_volume,last_day_tvl)
+    return trading_volume,last_day_tvl
 def main():
     sushi_total()
 
